@@ -36,7 +36,7 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="{{ route('login.handle') }}" method="post">
+    <form action="{{ route('admin.login.handle') }}" method="post">
     {{-- <form action="" method="post"> --}}
     	{!! csrf_field() !!}
         <h2 class="text-center">Log in</h2>

@@ -43,7 +43,7 @@ class AuthController extends Controller
             $user = auth()->guard('web')->user();
             
             \Session::put('success','You are Login successfully!!');
-            return redirect()->route('login');
+            return redirect()->route('admin.login');
             
         } else {
             return back()->with('error','your username and password are wrong.');

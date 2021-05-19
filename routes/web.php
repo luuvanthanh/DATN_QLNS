@@ -25,6 +25,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 //admin
-Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'postLogin'])->name('login.handle');
+Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
+    Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'postLogin'])->name('login.handle');
+});
+
+
 
