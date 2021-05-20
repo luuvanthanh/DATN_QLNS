@@ -17,28 +17,26 @@ class CreateWorkersTable extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->boolean('sex')->default(0);
+            $table->boolean('sex')->default(0)->comment('status: 0-male, 1-female');
             $table->date('birthday');
             $table->string('cmnd_no');
-            $table->date('day_range');
-            $table->date('issued_by');
+            $table->date('day_range')->nullable();
+            $table->date('issued_by')->nullable();
             $table->string('address');
             $table->string('phone');
-            $table->date('day_work');
+            $table->date('day_work')->nullable();
             $table->string('email');
-            $table->string('level');
+            $table->string('level')->nullable();
             $table->string('certificate');
             $table->string('school');
             $table->string('skill');
             $table->boolean('status')->default(1);
-            $table->unsignedBigInteger('deparment_id');
-            $table->unsignedBigInteger('position_id');
-            $table->unsignedBigInteger('salary_id');
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->unsignedBigInteger('position_id')->nullable();
+            $table->unsignedBigInteger('salary_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('deparment_id')->references('id')->on('deparments');
-            $table->foreign('position_id')->references('id')->on('positions');
-            $table->foreign('salary_id')->references('id')->on('salaries');
+           
         });
     }
 

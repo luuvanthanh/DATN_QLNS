@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -16,8 +17,10 @@ class DepartmentController extends Controller
     public function index()
     {
         $data = [];
+        // $workers = Worker::get('department');
         $departments = Department::get();
         $data['departments'] = $departments;
+        // $data['workers'] = $workers;
         return view('admin.departments.index', $data);
     }
 

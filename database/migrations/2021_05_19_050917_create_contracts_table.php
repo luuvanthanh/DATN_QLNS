@@ -19,14 +19,12 @@ class CreateContractsTable extends Migration
             $table->date('end_day');
             $table->string('wage');
             $table->boolean('status')->default(1);
-            $table->unsignedBigInteger('worker_id');
-            $table->unsignedBigInteger('contract_type_id');
-            $table->unsignedBigInteger('record_id');
+            $table->unsignedBigInteger('worker_id')->nullable();
+            $table->unsignedBigInteger('contract_type_id')->nullable();
+            $table->unsignedBigInteger('record_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('worker_id')->references('id')->on('workers');
-            $table->foreign('contract_type_id')->references('id')->on('contractTypes');
-            $table->foreign('record_id')->references('id')->on('records');
+           
         
         });
     }
