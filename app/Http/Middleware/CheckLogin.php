@@ -26,8 +26,10 @@ class CheckLogin
 
         // check login: if (Login is OK && routeName == ['admin.login', 'admin.login.handle']) then redirect to Dashboard page
         if (Auth::guard('web')->check() && in_array(Route::currentRouteName(), ['admin.login', 'admin.login.handle'])) {
-            dd("Đăng nhập thành công");
+            // dd("Đăng nhập thành công");
             // return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.departments.index');
+
         }
         return $next($request);
     }
