@@ -1,5 +1,8 @@
 {{-- declare all file script use global --}}
 <!-- jQuery -->
+<script src="/plugins/jquery.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+
 <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="/adminlte/plugins/jquery-ui/jquery-ui.min.js"></script>

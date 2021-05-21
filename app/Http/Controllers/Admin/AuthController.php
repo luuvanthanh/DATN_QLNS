@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Validator;
 use Session;
 use App\Providers\RouteServiceProvider;
-use App\Models\LoyalCustomer;
 use Illuminate\Support\Facades\Auth;
 
 // use Auth; //use thư viện auth
