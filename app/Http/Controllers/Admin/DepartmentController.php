@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Worker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DepartmentController extends Controller
 {
@@ -14,15 +16,19 @@ class DepartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = [];
-        // $workers = Worker::get('department');
-        $departments = Department::get();
+        $departments = Department::where('name', 'like', '%' . $request->name . '%')->withCount('workers')->get();
+
+        // if(!empty($request->name)){
+        //     $departments = $departments->where('name', 'like', '%' . $request->name . '%')->get();
+        // }
+        // $department = $departments->paginate(2);
         $data['departments'] = $departments;
-        // $data['workers'] = $workers;
         return view('admin.departments.index', $data);
     }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -31,7 +37,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $data = [];
+        return view('admin.departments.create', $data);
     }
 
     /**
@@ -42,7 +49,22 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $departmentInsert = [
+            'name' => $request->name,
+        ];
+        // dd($departmentInsert);
+        DB::beginTransaction();
+        try {
+            Department::create($departmentInsert);
+            // insert into data to table category (successful)
+            DB::commit();
+            return redirect()->route('admin.departments.index')->with('sucess', 'Insert into data to Departments Sucessful.');
+        } catch (\Exception $ex) {
+            // insert into data to table category (fail)
+            DB::rollBack();
+            Log::error($ex->getMessage());
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
     }
 
     /**
@@ -64,7 +86,10 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [];
+        $departments = Department::findOrFail($id);
+        $data['departments'] = $departments;
+        return view('admin.departments.edit', $data);
     }
 
     /**
@@ -76,7 +101,18 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $departments = Department::find($id);
+        $departments->name = $request->name;
+        DB::beginTransaction();
+        try{
+            $departments->save();
+
+            DB::commit();
+            return redirect()->route('admin.departments.index')->with('success','Update departments successful!');
+        }catch(\Exception $ex){
+            DB::rollback();
+            return redirect()->back()->with('error',$ex->getMessage());
+        }
     }
 
     /**
@@ -87,6 +123,17 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $departments = Department::find($id);
+            $departments->delete();
+            DB::commit();
+            return redirect()->route('admin.departments.index')
+                ->with('success', 'Delete Department successful!');
+        }  catch (\Exception $ex) {
+            DB::rollBack();
+            // have error so will show error message
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
     }
 }

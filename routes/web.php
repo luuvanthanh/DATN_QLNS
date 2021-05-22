@@ -36,8 +36,13 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
 
      // departments
     Route::group(['prefix' => 'departments', 'as' => 'departments.'], function () {
-        Route::get('/pb', [DepartmentController::class, 'index'])->name('index');
-        
+        Route::get('/list', [DepartmentController::class, 'index'])->name('index');
+        Route::get('/create', [DepartmentController::class, 'create'])->name('create');
+        Route::post('/store', [DepartmentController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [DepartmentController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [DepartmentController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [DepartmentController::class, 'destroy'])->name('destroy');
     });
 });
 

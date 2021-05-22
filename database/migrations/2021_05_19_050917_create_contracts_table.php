@@ -15,10 +15,10 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->date('start_day');
-            $table->date('end_day');
-            $table->string('wage');
-            $table->boolean('status')->default(1);
+            $table->date('start_day')->nullable();
+            $table->date('end_day')->nullable();
+            $table->string('wage')->nullable();
+            $table->boolean('status')->default(1)->nullable();
             $table->unsignedBigInteger('worker_id')->nullable();
             $table->unsignedBigInteger('contract_type_id')->nullable();
             $table->unsignedBigInteger('record_id')->nullable();

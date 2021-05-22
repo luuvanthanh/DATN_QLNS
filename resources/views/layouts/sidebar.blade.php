@@ -37,10 +37,22 @@
                with font-awesome or any other icon font library -->
           {{-- menu for home page --}}
           <li class="nav-item {{ Route::currentRouteName() == 'admin.dashboard' ? 'menu-open' : '' }}">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+            <a href="" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Thống kê, báo cáo
+              </p>
+            </a>
+            <a href="" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Quản lý nhân viên
+              </p>
+            </a>
+            <a href="{{ route('admin.departments.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Quản lý phòng ban
               </p>
             </a>
 

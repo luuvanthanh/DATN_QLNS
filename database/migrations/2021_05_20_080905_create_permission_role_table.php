@@ -18,6 +18,7 @@ class CreatePermissionRoleTable extends Migration
             $table->unsignedBigInteger('permission_id')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->timestamps();
+            
 
            
         });
