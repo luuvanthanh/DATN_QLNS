@@ -16,10 +16,12 @@ class UserTableSeeder extends Seeder
     {
         $data = [
             [   
-              
                 'name' => 'superadministrator',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('12345'),
+                'status' => 1,
+                'avatar' => 'sang',
+                'role_id' => 1,
             ],
         ];
         DB::table('users')->insert($data);

@@ -55,9 +55,24 @@
                 Quản lý phòng ban
               </p>
             </a>
-
           </li>
-
+          <li>
+            <h5 class="text-muted">QUẢN TRỊ HỆ THỐNG</h5>
+          </li>
+          <li class="nav-item border border-secondary rounded mt-1">
+            <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+              <p>
+                Quản lí người dùng
+              </p>
+            </a>
+          </li>
+          <li class="nav-item border border-secondary rounded mt-1 mb-4">
+            <a href="{{ route('admin.role.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+              <p>
+                Quản lí phân quyền 
+              </p>
+            </a>
+          </li>
           {{-- menu of category module --}}
           {{-- @php
             $routeCategoryArr = [

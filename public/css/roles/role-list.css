@@ -1,0 +1,19 @@
+td i{
+    font-size: 17px;
+    background-color: #17a2bb;
+    padding: 7px 7px;
+    border-radius: 5px ;
+    color: black;
+}
+td .i1{
+    font-size: 17px;
+    background-color: #dc3545;
+    padding: 7px 7px;
+    border-radius: 5px ;
+    color: black;
+}
+td button{
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+}
