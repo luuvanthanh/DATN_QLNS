@@ -115,7 +115,6 @@ class RoleController extends Controller
         return view('admin.roles.edit', $data);
 
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -139,7 +138,7 @@ class RoleController extends Controller
 
             DB::commit();
             // success
-            return redirect()->route('admin.role.index')->with('success', 'Insert successful!');
+            return redirect()->route('admin.role.index')->with('success', 'Edit successful!');
             // dd($request->permission);
         } catch (\Exception $ex) {
             DB::rollback();

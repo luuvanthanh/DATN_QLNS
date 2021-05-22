@@ -11,7 +11,7 @@
 	<form class="f1" action="{{ route('admin.user.update',$user->id)}}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <h2 class="text-center mt-5">Chỉnh sửa người dùng</h2>
+        <h2 class="text-center pt-5">Cập nhật người dùng</h2>
 
         <div class="form-group form-group2">
 
@@ -49,15 +49,18 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-3">
-                <label for="">Vai trò:</label>
-                <select name="role_id" class="form-select ip-1" id="">
-                    @if (!empty($roles))
+            <div class="form-group mb-5">
+                <label for="">Vai trò: </label>
+                <select name="role_id" class="form-control">
+                    @if(!empty($roles))
                         @foreach ($roles as $roleId => $roleName)
-                            <option selected value="{{ $roleId}}" {{ old('role_id')== $roleId ? 'selected' : ''}}>{{ $roleName}}</option>
+                            <option value="{{ $roleId }}" {{ old('role_id', $user->role_id) == $roleId ? 'selected' : ''  }}>{{ $roleName }}</option>
                         @endforeach
                     @endif
                 </select>
+                @error('category_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group mb-3">
@@ -68,10 +71,12 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Update</button>
+            <div class="form-group mb-3">
+                <div class="form-group">
+                    <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </div>
             </div>
-
         </div> 
 	</form>
 @endsection

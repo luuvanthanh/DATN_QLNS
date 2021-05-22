@@ -38,12 +38,7 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
      // departments
     Route::group(['prefix' => 'departments', 'as' => 'departments.'], function () {
         Route::get('/pb', [DepartmentController::class, 'index'])->name('index');
-        // Route::get('/', 'DepartmentController@index')->middleware('permission:read-department')->name('index');
-        // Route::get('/create', 'DepartmentController@create')->middleware('permission:create-department')->name('create');
-        // Route::post('/', 'DepartmentController@store')->middleware('permission:create-department')->name('store');
-        // Route::get('/{id}/edit', 'DepartmentController@edit')->middleware('permission:update-department')->name('edit');
-        // Route::put('/{id}', 'DepartmentController@update')->middleware('permission:update-department')->name('update');
-        // Route::delete('/{id}', 'DepartmentController@destroy')->middleware('permission:update-department')->name('destroy');
+        
     });
 
     // ------------route-user-----------------
@@ -60,7 +55,6 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
         Route::get('/list', [RoleController::class, 'index'])->name('index');
         Route::get('/create', [RoleController::class, 'create'])->name('create');
         Route::post('/store', [RoleController::class, 'store'])->name('store');
-        Route::get('/show/{id}', [RoleController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');

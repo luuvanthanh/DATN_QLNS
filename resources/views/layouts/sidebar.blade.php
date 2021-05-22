@@ -44,7 +44,9 @@
               </p>
             </a>
           </li>
-
+          <li>
+            <h5 class="text-muted">QUẢN TRỊ HỆ THỐNG</h5>
+          </li>
           <li class="nav-item border border-secondary rounded mt-1">
             <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
               <p>

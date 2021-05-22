@@ -17,7 +17,7 @@ class CreateSalariesTable extends Migration
             $table->id();
             $table->string('basic_salary');
             $table->integer('coefficients_salary');
-            $table->string('allowance');
+            $table->string('allowance')->nullable();
             $table->timestamps();
         });
     }

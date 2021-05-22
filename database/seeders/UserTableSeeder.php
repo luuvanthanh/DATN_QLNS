@@ -16,11 +16,11 @@ class UserTableSeeder extends Seeder
     {
         $data = [
             [   
-                'avatar' => 'super.png',
                 'name' => 'superadministrator',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('12345'),
                 'status' => 1,
+                'avatar' => 'sang',
                 'role_id' => 1,
             ],
         ];

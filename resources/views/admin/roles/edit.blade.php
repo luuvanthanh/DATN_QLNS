@@ -3,7 +3,7 @@
 
 
 @push('css')   <!-- tên css đặt cho đúng với tên của stack đã đặt trong css.blade.css -->
-    <link rel="stylesheet" type="text/css" href="/css/roles/roles-edit.css">
+    <link rel="stylesheet" type="text/css" href="/css/roles/role-edit.css">
 
 @section('content')
 	{{-- -------------------hiển thị thông báo lỗi------------------------ --}}
@@ -26,14 +26,42 @@
                 @enderror
             </div>
 
-            @foreach ($permissions as $key => $permission)
+            {{-- @foreach ($permissions as $key => $permission)
             <div class="form-check">
                 <input 
                     {{ $getAllPermissionOfRole->contains($permission->id) ? 'checked' : ''}}
                     class="form-check-input" type="checkbox" value="{{ $permission->id}}" name="permission[]">
                 <label class="form-check-label" >{{ $permission->display_name}}</label>
             </div>
-            @endforeach
+            @endforeach --}}
+            <div class="form-group mb-5">
+                <label for="">Phân quyền người dùng:</label>
+                <table class="table table-bordered table-hover table-striped" >
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Tên quyền</th>
+                            <th class="text-center">{{$roles->name}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(!empty($permissions))
+                            @foreach ($permissions as $key => $permission)
+                            <tr>
+                                <td>{{ $key+1}}</td>
+                                <td class="text-left">{{ $permission->display_name}}</td>
+                                <td class="text-center">
+                                    <div class="form-check form-switch">
+                                        <input {{ $getAllPermissionOfRole->contains($permission->id) ? 'checked' : ''}}
+                                        class="form-check-input" type="checkbox" value="{{ $permission->id}}" name="permission[]">
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
             
             <div class="form-group mt-5">
                 <a href="{{ route('admin.role.index') }}" class="btn btn-secondary">Quay lại</a>

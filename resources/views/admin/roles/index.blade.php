@@ -11,7 +11,7 @@
 @section('content')
     <!-- form search -->
     <!-- create category link -->
-        <h3 class="text-center pt-5 mb-3">Quản lí vai trò</h3>
+        <h3 class="text-center pt-5 mb-3">Quản lí phân quyền</h3>
     <!-- display list category table -->
         <a href="create"><button class="btn btn-primary mb-3" type="button">Thêm mới</button></a>
 

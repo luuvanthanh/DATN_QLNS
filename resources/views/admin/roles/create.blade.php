@@ -21,18 +21,37 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
-        <div class="form-group mb-5">
-            @foreach ($permissions as $key => $permission)
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{ $permission->id}}" name="permission[]">
-                <label class="form-check-label" >{{ $permission->display_name}}</label>
-            </div>
-            @endforeach
-        </div>
         
+        <div class="form-group mb-5">
+            <label for="">Phân quyền người dùng:</label>
+            <table class="table table-bordered table-hover table-striped" >
+                <thead>
+                    <tr>
+                        <th class="text-center">STT</th>
+                        <th class="text-center">Tên quyền</th>
+                        <th class="text-center">Xử lí</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(!empty($permissions))
+                        @foreach ($permissions as $key => $permission)
+                        <tr>
+                            <td>{{ $key+1}}</td>
+                            <td class="text-left">{{ $permission->display_name}}</td>
+                            <td class="text-center">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="{{ $permission->id}}" name="permission[]">
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
 
-        <div class="form-group mt-5">
+
+        <div class="form-group">
             <a href="{{ route('admin.role.index') }}" class="btn btn-secondary">Quay lại</a>
             <button type="submit" class="btn btn-primary">Lưu</button>
         </div>

@@ -4,6 +4,9 @@
 @section('title','List User') <!-- sử dụng cái title đã khai báo ở master -->
 <!-- import file css(private) -->
 @push('css')   <!-- tên css đặt cho đúng với tên của stack đã đặt trong css.blade.css -->
+    <link rel="stylesheet" type="text/css" href="/css/users/user-list.css">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" /> 
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 @push('js')
 @section('content')
     <!-- form search -->
@@ -45,12 +48,12 @@
                         </td>
                         <td>{{ $user->Role->name}}</td>
                         <td>{{ $user->status}}</td>
-                        <td><a href="{{(route('admin.user.edit', $user->id))}}" title="">Edit</a></td>
+                        <td class="text-center" ><a href="{{(route('admin.user.edit', $user->id))}}" title=""><i class="fas fa-edit"></i></a></td>
                         <td>
                             <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" name="submit" value="Delete" class="btn btn-danger">
+                                <button type="submit"  name="submit" value="Delete"><i class="fas fa-trash-alt float-right i1"></i></button>
                             </form>
                         </td>
                     </tr>
