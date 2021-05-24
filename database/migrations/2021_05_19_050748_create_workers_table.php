@@ -21,7 +21,7 @@ class CreateWorkersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('cmnd_no')->nullable();
             $table->date('day_range')->nullable();
-            $table->date('issued_by')->nullable();
+            $table->string('issued_by')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->date('day_work')->nullable();

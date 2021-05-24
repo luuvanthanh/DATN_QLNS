@@ -56,11 +56,9 @@ class DepartmentController extends Controller
         DB::beginTransaction();
         try {
             Department::create($departmentInsert);
-            // insert into data to table category (successful)
             DB::commit();
             return redirect()->route('admin.departments.index')->with('sucess', 'Insert into data to Departments Sucessful.');
         } catch (\Exception $ex) {
-            // insert into data to table category (fail)
             DB::rollBack();
             Log::error($ex->getMessage());
             return redirect()->back()->with('error', $ex->getMessage());

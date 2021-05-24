@@ -10,7 +10,33 @@ class Worker extends Model
     use HasFactory;
     protected $table = 'workers';
 
+    protected $fillable = [ 
+        'code',
+        'name',
+        'sex',
+        'birthday',
+        'cmnd_no',
+        'day_range',
+        'issued_by',
+        'address',
+        'phone',
+        'day_work',
+        'email',
+        'level',
+        'certificate',
+        'school',
+        'skill',
+        'status',
+        'department_id',
+        'position_id',
+        'salary_id',
+    ];
+
     public function department(){
         return $this->belongsTo(Department::class);
+    }
+
+    public function position(){
+        return $this->belongsTo(Position::class);
     }
 }

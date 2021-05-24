@@ -21,7 +21,6 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'status' => 1,
                 'avatar' => 'sang',
-                'role_id' => 1,
             ],
         ];
         DB::table('users')->insert($data);

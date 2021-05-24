@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'list department')
+@section('title', 'list workers')
 
 @section('content')
 <section class="content">
@@ -34,7 +34,7 @@
       {{--  --}}
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h2 class="m-0 text-dark">Quản lý phòng ban</h2>
+          <h2 class="m-0 text-dark">Quản lý nhân viên</h2>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -44,10 +44,10 @@
         </div>
       </div>
         <div class="card">
-          <h5 class="m-0 text-dark">Danh sách phòng ban</h5>
+          <h5 class="m-0 text-dark">Danh sách nhân viên</h5>
           <div class="card-header">
             <span class="float-right">
-              <a href="{{ route('admin.departments.create')}}" class=" btn btn-primary">
+              <a href="{{ route('admin.workers.create')}}" class=" btn btn-primary">
                 <i class="fa fa-plus"></i> Thêm mới
               </a>
             </span>
@@ -72,25 +72,34 @@
             <thead>
               <tr>
                 <th class="text-center">STT</th>
-                <th class="text-center">Tên phòng ban</th>
-                <th class="text-center">Số lượng người lao động</th>
-                <th class="text-center" colspan="2" >Xử lý</th>
+                <th class="text-center">Mã nhân viên</th>
+                <th class="text-center">Họ và tên</th>
+                <th class="text-center">Số điện thoại</th>
+                <th class="text-center">Ngày vào làm</th>
+                <th class="text-center">Chức vụ</th>
+                <th class="text-center" colspan="3" >Xử lý</th>
               </tr>
             </thead>
             <tbody>
-                @if(!empty($departments))
-                @foreach ($departments as $key => $department)
+                @if(!empty($workers))
+                @foreach ($workers as $key => $worker)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $department->name}}</td>
-                        <td class="text-center">{{$department->workers_count}}</td>
+                        <td>{{ $worker->code}}</td>
+                        <td class="text-center">{{ $worker->name}}</td>
+                        <td class="text-center">{{ $worker->phone}}</td>
+                        <td class="text-center">{{ $worker->day_work}}</td>
+                        <td class="text-center">{{ !empty($worker->position->name) ? $worker->position->name : null }}</td>
                         <td class="text-center">
-                            <a class="btn btn-info btn-sm  " href="{{ route('admin.departments.edit', $department->id)}}">
+                          <a class="btn btn-info btn-sm" href="{{ route('admin.workers.show', $worker->id)}}"><i class="fas fa-eye"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-info btn-sm  " href="{{ route('admin.workers.edit', $worker->id)}}">
                               <i class="fas fa-pencil-alt" ></i>
                             </a>
                         </td>
                         <td class="text-center">
-                          <form action="{{ route('admin.departments.destroy', $department->id)}}" method="POST">
+                          <form action="{{ route('admin.workers.destroy', $worker->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm ">

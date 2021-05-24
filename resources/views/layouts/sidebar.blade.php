@@ -36,6 +36,9 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           {{-- menu for home page --}}
+          <li>
+            <h5 class="text-muted">QUẢN LÝ NHÂN SỰ</h5>
+          </li>
           <li class="nav-item {{ Route::currentRouteName() == 'admin.dashboard' ? 'menu-open' : '' }}">
             <a href="" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -43,7 +46,7 @@
                 Thống kê, báo cáo
               </p>
             </a>
-            <a href="" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+            <a href="{{ route('admin.workers.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý nhân viên

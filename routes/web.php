@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,18 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
         Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [DepartmentController::class, 'destroy'])->name('destroy');
     });
+
+         // Workers
+         Route::group(['prefix' => 'workers', 'as' => 'workers.'], function () {
+            Route::get('/list', [WorkerController::class, 'index'])->name('index');
+            Route::get('/create', [WorkerController::class, 'create'])->name('create');
+            Route::post('/store', [WorkerController::class, 'store'])->name('store');
+            Route::get('/show/{id}', [WorkerController::class, 'show'])->name('show');
+            Route::get('/edit/{id}', [WorkerController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [WorkerController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [WorkerController::class, 'destroy'])->name('destroy');
+            
+        });
 
     // ------------route-user-----------------
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
