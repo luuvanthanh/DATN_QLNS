@@ -49,7 +49,7 @@
                 {{--  --}}
             @if(!empty($workers))
             @foreach ($workers as $key => $worker)
-                <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="card card-primary">
                 <div class="card-header border-bottom-0">
                     Nhân sự
@@ -71,9 +71,16 @@
                       </li>
                       <li>
                         <span class="fa-li"><i class="fas fa-lg fa-play"></i></span>
-                        Trạng thái: {{$worker->status}}
+                        Trạng thái:  
+                        @if ($worker->status == -1)
+                        <span for=""  >Nghỉ việc</span>
+                        @elseif($worker->status == 0)
+                        <span for="" >Thử việc</span>
+                        @elseif($worker->status == 1)
+                        <span for="" >Chính thức</span>
+                        @endif
                       </li>
-                      <li>
+                      <li> 
                         <span class="fa-li"><i class="fas fa-lg fa-calendar-alt"></i></span>
                         Ngày vào làm: {{$worker->day_work}}
                       </li>
@@ -84,7 +91,50 @@
                 </div>
             @endforeach
             @endif
-                {{--  --}}
+            </div>
+            <div class="col-md-6"> 
+              <div class="card card-primary">
+                <div class="card-header border-bottom-0">
+                    Thông tin
+                </div>
+                <div class="card-body pt-3">
+                <div class="row">
+                  <div class="col-12">
+                    <ul class="ml-4 mb-0 fa-ul text-muted worker-info">
+                      <li>
+                        <span class="fa-li"><i class="fas fa-lg fa-transgender"></i></span>
+                        Giới tính: 
+                        @if ($worker->sex == 0)
+                        <span for="" >Nam</span>
+                        @elseif($worker->sex == 1)
+                        <span for="" >Nữ</span>
+                        @endif
+                      </li>
+                      <li>
+                        <span class="fa-li"><i class="fas fa-lg fa-birthday-cake"></i></span>
+                        Ngày sinh: {{ $worker->birthday}}
+                      </li>
+                      <li>
+                        <span class="fa-li"><i class="fas fa-md fa-id-card"></i></span>
+                        Số CMND: {{ $worker->cmnd_no}}
+                      </li>
+                      <li>
+                        <span class="fa-li"><i class="fas fa-lg fa-calendar-alt"></i></span>
+                        Ngày cấp: {{ $worker->day_range}}
+                      </li>
+                      <li>
+                        <span class="fa-li"><i class="fas fa-lg fa-paper-plane"></i></span>
+                        Nơi cấp: {{ $worker->day_range}}
+                      </li>
+                      <li>
+                        <span class="fa-li"><i class="fas fa-lg fa-home"></i></span>
+                        Địa chỉ: {{ $worker->issued_by}}
+                      </li>
+                    </ul>
+                </div>
+                </div>
+                </div>
+                </div>
             </div>
         </div>
       </div>

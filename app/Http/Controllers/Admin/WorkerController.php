@@ -17,13 +17,11 @@ class WorkerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // echo 111;die;
         $data = [];
-        $workers = Worker::with('position')->get();
-        // dd($workers);
-        // $workers = DB::table('workers')->join('positions', 'workers.position_id', '=', 'positions.id')->get();
+        $workers = Worker::where('name', 'like', '%' . $request->name . '%')->with('position')->paginate(5);
         $data['workers'] = $workers;
         return view('admin.workers.index', $data);
     }   
@@ -56,6 +54,7 @@ class WorkerController extends Controller
             'name' => $request->name,
             'cmnd_no' => $request->cmnd_no,
             'day_range' => $request->day_range,
+            'birthday' => $request->birthday,
             'issued_by' => $request->issued_by,
             'address' => $request->address,
             'level' => $request->level,

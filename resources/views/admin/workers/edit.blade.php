@@ -48,15 +48,9 @@
       <div class="col-md-9">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Thêm mới nhân viên</h3>
+            <h3 class="card-title">Cập nhật nhân viên</h3>
           </div>
           <div class="card-body">
-            {{--  --}}
-            {{-- <div class="card-header p-2">
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a class="active nav-link" href="#info" data-toggle="tab">Thông tin</a></li>
-                <li class="nav-item"><a class="nav-link" href="/view/admin/workers/education.blade.php" data-toggle="tab">Trình độ</a></li>
-                {{-- <li class="nav-item"><a class="nav-link" href="#record" data-toggle="tab">Hồ sơ</a></li> --}}
               </ul>
             </div>
             {{--  --}}
@@ -81,14 +75,7 @@
                           <input class="form-control" name="address" type="text" value="{{$workers->address}}" id="name">
 
                           <label for="name" class="required">Trình độ</label>
-                          <select class="form-control" id="education_id" name="level">
-                            <option value="1">Trung học</option>
-                            <option value="2">Trung cấp</option>
-                            <option value="3">Cao đẳng</option>
-                            <option value="4">Đại học</option>
-                            <option value="5">Trên đại học</option>
-                            <option value="0" selected="selected">--Chọn trình độ--</option>
-                          </select>
+                          <input class="form-control" name="level" type="text" value="{{$workers->level}}" id="name">
                           <label for="name" class="required">Trường tốt nghiệp</label>
                           <input class="form-control" name="school" type="text" value="{{$workers->school}}" id="name">
                           <label for="name" class="required">Bằng cấp, chứng chỉ</label>
@@ -102,13 +89,13 @@
                           <div class="row">
                             <div class="col-sm-6">
                               <div class="custom-control custom-radio col-sm-4 pl-5 mb-2 pt-1">
-                                <input class="custom-control-input" id="male" checked="checked" name="sex" type="radio" value="0">
+                                <input class="custom-control-input" id="male"  name="sex" checked  type="radio" value="0" {{$workers->sex == 0 ? 'checked' : ''}}>
                                 <label for="male" class="custom-control-label">Nam</label>
                               </div>
                             </div>
                             <div class="col-sm-6 ">
                               <div class="custom-control custom-radio col-sm-4 pl-5 mb-2 pt-1">
-                                <input class="custom-control-input" id="female"  name="sex" type="radio" value="1">
+                                <input class="custom-control-input" id="female"  name="sex" type="radio" value="1" {{$workers->sex == 1 ? 'checked' : ''}}>
                                 <label for="female" class="custom-control-label">Nữ</label>
                               </div>
                             </div>
@@ -121,11 +108,10 @@
                           <input class="form-control" name="day_work" type="date" value="{{$workers->day_work}}" id="name">
                           <label for="name" class="required">Trạng thái</label>
                           <select class="form-control" id="status" name="status">
-                            <option value="-1">Nghỉ việc</option>
-                            <option value="0" selected="selected">Thử việc</option>
-                            <option value="1">Chính thức</option>
+                            <option value="-1" {{$workers->status == -1 ? 'selected' : ''}} >Nghỉ việc</option>
+                            <option value="0" {{$workers->status == 0 ? 'selected' : ''}}>Thử việc</option>
+                            <option value="1" {{$workers->status == 1 ? 'selected' : ''}}>Chính thức</option>
                           </select>
-
                           <label for="name" class="required">Kỹ nẵng chuyên môn</label>
                           <input class="form-control" name="skill" type="text" value="{{$workers->skill}}" id="name">
                           <label for="name" class="required">Phòng ban</label>

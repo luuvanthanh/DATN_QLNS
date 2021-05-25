@@ -117,4 +117,5 @@
     </div>
   </div>
 </section>
+{{ $workers->appends(request()->input())->links() }}
 @endsection

@@ -80,14 +80,7 @@
                           <input class="form-control" name="address" type="text" value="" id="name">
 
                           <label for="name" class="required">Trình độ</label>
-                          <select class="form-control" id="education_id" name="level">
-                            <option value="1">Trung học</option>
-                            <option value="2">Trung cấp</option>
-                            <option value="3">Cao đẳng</option>
-                            <option value="4">Đại học</option>
-                            <option value="5">Trên đại học</option>
-                            <option value="0" selected="selected">--Chọn trình độ--</option>
-                          </select>
+                          <input class="form-control" name="level" type="text" value="" id="name">
                           <label for="name" class="required">Trường tốt nghiệp</label>
                           <input class="form-control" name="school" type="text" value="" id="name">
                           <label for="name" class="required">Bằng cấp, chứng chỉ</label>
@@ -116,6 +109,8 @@
                           <input class="form-control" name="phone" type="text" value="" id="name">
                           <label for="name" class="required">Email</label>
                           <input class="form-control" name="email" type="text" value="" id="name">
+                          <label for="name" class="required">Ngày sinh</label>
+                          <input class="form-control" name="birthday" type="date" value="" id="name">
                           <label for="name" class="required">Ngày vào làm</label>
                           <input class="form-control" name="day_work" type="date" value="" id="name">
                           <label for="name" class="required">Trạng thái</label>
@@ -132,7 +127,7 @@
                             <option value="1"></option>
                             @if (!empty($departments))
                               @foreach ($departments as $department)
-                              <option value="1">{{ $department->name}}</option>
+                              <option value="{{$department->id}}">{{ $department->name}}</option>
                               @endforeach  
                             @endif
                             <option value="0" selected="selected">--Chọn phòng ban--</option>
