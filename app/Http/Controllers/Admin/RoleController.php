@@ -27,14 +27,8 @@ class RoleController extends Controller
     {
         //
         $data = [];
-        $roles = Role::get();
-        // $roleOfUser = DB::table('roles')
-        //     ->join('users', 'users.role_id', '=' , 'roles.id')
-        //     ->where('roles.id', $roles)
-        //     ->select('roles.*')
-        //     ->get()->count();
-            
-        // dd($roleOfUser);
+        // $roles = Role::get();
+        $roles = Role::withCount('users')->get();
         $data['roles'] = $roles;
         return view('admin.roles.index', $data);
     }

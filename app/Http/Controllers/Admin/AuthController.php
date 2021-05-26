@@ -37,15 +37,28 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (auth()->guard('web')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
+        if (auth()->guard('web')->attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'status'=>1]))
         {
             $user = auth()->guard('web')->user();
             
             \Session::put('success','You are Login successfully!!');
             return redirect()->route('admin.login');
             
+        }  else {
+            return back()->with('error','email, mật khẩu không đúng
+                                        hoặc tài khoản chưa được kích hoạt');
+        }
+        
+        $user = auth()->guard('web')->user();
+        if ($user->active) {
+            Auth::login($user, $request->has('remember'));
+            return redirect()->intended($this->redirectPath());
         } else {
-            return back()->with('error','your username and password are wrong.');
+            return redirect($this->loginPath()) // Change this to redirect elsewhere
+                ->withInput($request->only('email', 'remember'))
+                ->withErrors([
+                    'active' => 'You must be active to login.'
+                ]);
         }
 
 
