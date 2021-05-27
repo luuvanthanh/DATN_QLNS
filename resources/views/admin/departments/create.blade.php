@@ -77,3 +77,16 @@
 </section>
 {{-- @include('admin.shared._notify') --}}
 @endsection
+
+
+
+<div class="col-md-9">
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Thêm mới phòng ban</h3>
+    </div>
+    <div class="card-body">
+      
+    </div>
+  </div>
+</div>

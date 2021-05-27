@@ -17,3 +17,23 @@ td button{
     border-radius: 5px;
     background-color: #dc3545;
 }
+
+td .active{
+    width: 75px;
+    margin: auto;
+    height: 22px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: cornsilk;
+}
+
+td .unactive{
+    width: 105px;
+    margin: auto;
+    height: 22px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: cornsilk;
+}

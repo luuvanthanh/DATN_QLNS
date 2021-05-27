@@ -50,16 +50,16 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     });
 
          // Workers
-         Route::group(['prefix' => 'workers', 'as' => 'workers.'], function () {
-            Route::get('/list', [WorkerController::class, 'index'])->name('index');
-            Route::get('/create', [WorkerController::class, 'create'])->name('create');
-            Route::post('/store', [WorkerController::class, 'store'])->name('store');
-            Route::get('/show/{id}', [WorkerController::class, 'show'])->name('show');
-            Route::get('/edit/{id}', [WorkerController::class, 'edit'])->name('edit');
-            Route::put('/update/{id}', [WorkerController::class, 'update'])->name('update');
-            Route::delete('/delete/{id}', [WorkerController::class, 'destroy'])->name('destroy');
+    Route::group(['prefix' => 'workers', 'as' => 'workers.'], function () {
+        Route::get('/list', [WorkerController::class, 'index'])->name('index');
+        Route::get('/create', [WorkerController::class, 'create'])->name('create');
+        Route::post('/store', [WorkerController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [WorkerController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [WorkerController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [WorkerController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [WorkerController::class, 'destroy'])->name('destroy');
             
-        });
+    });
 
     // ------------route-user-----------------
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
@@ -71,13 +71,22 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->middleware('checkRole:user-delete')->name('destroy');
     });
 
+    // Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
+    //     Route::get('/list', [RoleController::class, 'index'])->middleware('checkRole:role-list')->name('index');
+    //     Route::get('/create', [RoleController::class, 'create'])->middleware('checkRole:role-add')->name('create');
+    //     Route::post('/store', [RoleController::class, 'store'])->name('store');
+    //     Route::get('/edit/{id}', [RoleController::class, 'edit'])->middleware('checkRole:role-edit')->name('edit');
+    //     Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
+    //     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->middleware('checkRole:role-delete')->name('destroy');
+    // });
+
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
-        Route::get('/list', [RoleController::class, 'index'])->name('index');
-        Route::get('/create', [RoleController::class, 'create'])->name('create');
+        Route::get('/list', [RoleController::class, 'index'])->middleware('checkRole:role-list')->name('index');
+        Route::get('/create', [RoleController::class, 'create'])->middleware('checkRole:role-add')->name('create');
         Route::post('/store', [RoleController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
+        Route::get('/edit/{id}', [RoleController::class, 'edit'])->middleware('checkRole:role-edit')->name('edit');
         Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');
+        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->middleware('checkRole:role-delete')->name('destroy');
     });
 
 });
