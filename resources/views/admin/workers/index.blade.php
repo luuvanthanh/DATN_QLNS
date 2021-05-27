@@ -59,7 +59,7 @@
             <label class="form-control-plaintext">Tìm kiếm</label>
           </div>
           <div class="col-auto">
-            <input type="text" name="name" class="form-control"  placeholder="">
+            <input type="text" name="name" class="form-control" value=""  placeholder="">
           </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-search"></i> </button>
@@ -88,7 +88,7 @@
                         <td>{{ $worker->code}}</td>
                         <td class="text-center">{{ $worker->name}}</td>
                         <td class="text-center">{{ $worker->phone}}</td>
-                        <td class="text-center">{{ $worker->day_work}}</td>
+                        <td class="text-center">{{  date('d/m/Y', strtotime($worker->day_work)) }}</td>
                         <td class="text-center">{{ !empty($worker->position->name) ? $worker->position->name : null }}</td>
                         <td class="text-center">
                           <a class="btn btn-info btn-sm" href="{{ route('admin.workers.show', $worker->id)}}"><i class="fas fa-eye"></i></a>

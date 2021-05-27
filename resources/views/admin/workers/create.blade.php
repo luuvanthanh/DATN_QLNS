@@ -67,24 +67,33 @@
                       <div class="col-sm-6">
                         <div class="form-group"	>
                           <label for="name" class="required">Mã nhân viên</label>
-                          <input class="form-control" name="code" type="text" value="" id="name">
+                          <input class="form-control" name="code" type="text" value="{{'#'.str_pad($workers->id +1,10,'0',STR_PAD_LEFT)}}" id="name">
                           <label for="name" class="required">Họ và tên</label>
-                          <input class="form-control" name="name" type="text" value="" id="name">
+                          <input class="form-control" name="name" type="text" value="{{ old('name')}}" id="name">
+                          @error('name')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                           <label for="name" class="required">Số CMND</label>
-                          <input class="form-control" name="cmnd_no" type="text" value="" id="name">
+                          <input class="form-control" name="cmnd_no" type="text" value="{{ old('cmnd_no')}}" id="name">
+                          @error('cmnd_no')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                           <label for="name" class="required">Ngày cấp</label>
-                          <input class="form-control" name="day_range" type="date" value="" id="name">
+                          <input class="form-control" name="day_range" type="date" value="{{ old('day_range')}}" id="name">
                           <label for="name" class="required">Nơi cấp</label>
-                          <input class="form-control" name="issued_by" type="text" value="" id="name">
+                          <input class="form-control" name="issued_by" type="text" value="{{ old('issued_by')}}" id="name">
                           <label for="name" class="required">Địa chỉ</label>
-                          <input class="form-control" name="address" type="text" value="" id="name">
+                          <input class="form-control" name="address" type="text" value="{{ old('address')}}" id="name">
 
                           <label for="name" class="required">Trình độ</label>
-                          <input class="form-control" name="level" type="text" value="" id="name">
+                          <input class="form-control" name="level" type="text" value="{{ old('level')}}" id="name">
                           <label for="name" class="required">Trường tốt nghiệp</label>
-                          <input class="form-control" name="school" type="text" value="" id="name">
+                          <input class="form-control" name="school" type="text" value="{{ old('school')}}" id="name">
+                          @error('school')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                           <label for="name" class="required">Bằng cấp, chứng chỉ</label>
-                          <input class="form-control" name="certificate" type="text" value="" id="name">
+                          <input class="form-control" name="certificate" type="text" value="{{ old('certificate')}}" id="name">
                           
                       </div>
                       </div>
@@ -106,13 +115,19 @@
                             </div>
                           </div>
                           <label for="name" class="required">Số điện thoại</label>
-                          <input class="form-control" name="phone" type="text" value="" id="name">
+                          <input class="form-control" name="phone" type="text" value="{{ old('phone')}}" id="name">
+                          @error('phone')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                           <label for="name" class="required">Email</label>
-                          <input class="form-control" name="email" type="text" value="" id="name">
+                          <input class="form-control" name="email" type="text" value="{{ old('email')}}" id="name">
+                          @error('email')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                           <label for="name" class="required">Ngày sinh</label>
-                          <input class="form-control" name="birthday" type="date" value="" id="name">
+                          <input class="form-control" name="birthday" type="date" value="{{ old('birthday')}}" id="name">
                           <label for="name" class="required">Ngày vào làm</label>
-                          <input class="form-control" name="day_work" type="date" value="" id="name">
+                          <input class="form-control" name="day_work" type="date" value="{{ old('day_work')}}" id="name">
                           <label for="name" class="required">Trạng thái</label>
                           <select class="form-control" id="status" name="status">
                             <option value="-1">Nghỉ việc</option>
@@ -121,7 +136,7 @@
                           </select>
 
                           <label for="name" class="required">Kỹ nẵng chuyên môn</label>
-                          <input class="form-control" name="skill" type="text" value="" id="name">
+                          <input class="form-control" name="skill" type="text" value="{{ old('skill')}}" id="name">
                           <label for="name" class="required">Phòng ban</label>
                           <select class="form-control" id="education_id" name="department_id">
                             <option value="1"></option>
@@ -133,16 +148,16 @@
                             <option value="0" selected="selected">--Chọn phòng ban--</option>
                           </select>
                           <label for="name" class="required">Chức vụ</label>
-                          <select class="form-control" id="" name="position_id">
+                          <select class="form-control" id="" name="position_name">
                             <option value="1"></option>
                             @if (!empty($positions))
                               @foreach ($positions as $position)
                               <option value="{{ $position->id}}">{{ $position->name}}</option>
                               @endforeach  
                             @endif
-                            <option value="0" selected="selected">--Chọn chức vụ--</option>
+                            <option value="{{ old('position_name')}}" selected="selected">--Chọn chức vụ--</option>
                           </select>
-                      </div>
+                      </div>　
                       </div>
                       
                       <div class="card-footer">

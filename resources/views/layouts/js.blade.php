@@ -36,6 +36,7 @@
 <script src="/adminlte/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
-
+<script src="/adminlte/plugins/jquery-ui/jquery-1.12.4.js"></script>
+<script src="/adminlte/plugins/jquery-ui/jquery-ui.js"></script>
 {{-- declare other file script use private --}}
 @stack('js')
