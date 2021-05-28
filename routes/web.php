@@ -71,12 +71,12 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     });
 
     // Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
-    //     Route::get('/list', [RoleController::class, 'index'])->middleware('checkRole:role-list')->name('index');
-    //     Route::get('/create', [RoleController::class, 'create'])->middleware('checkRole:role-add')->name('create');
+    //     Route::get('/list', [RoleController::class, 'index'])->name('index');
+    //     Route::get('/create', [RoleController::class, 'create'])->name('create');
     //     Route::post('/store', [RoleController::class, 'store'])->name('store');
-    //     Route::get('/edit/{id}', [RoleController::class, 'edit'])->middleware('checkRole:role-edit')->name('edit');
+    //     Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
     //     Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
-    //     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->middleware('checkRole:role-delete')->name('destroy');
+    //     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');
     // });
 
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {

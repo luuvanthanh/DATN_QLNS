@@ -60,20 +60,20 @@
             </a>
           </li>
           <li>
-            <h5 class="text-muted">QUẢN TRỊ HỆ THỐNG</h5>
+            <li class="nav-header">QUẢN TRỊ HỆ THỐNG</li>
           </li>
-          <li class="nav-item border border-secondary rounded mt-1">
-            <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
-              <p>
-                Quản lí người dùng
-              </p>
+
+          <li class="nav-item">
+            <a href={{ route('admin.user.index') }} class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user"></i>
+              <p>Quản lý người dùng</p>
             </a>
           </li>
-          <li class="nav-item border border-secondary rounded mt-1 mb-4">
-            <a href="{{ route('admin.role.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
-              <p>
-                Quản lí phân quyền 
-              </p>
+
+          <li class="nav-item">
+            <a href={{ route('admin.role.index') }} class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-shield"></i>
+              <p>Quản lý phân quyền</p>
             </a>
           </li>
           {{-- menu of category module --}}

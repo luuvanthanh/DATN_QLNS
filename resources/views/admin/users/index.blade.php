@@ -82,7 +82,7 @@
                                 <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"  name="submit" value="Delete"><i class="fas fa-trash-alt float-right i1"></i></button>
+                                    <button type="submit"  name="submit" value="Delete" onclick="return confirm('bạn có chắc muốn xóa không')"><i class="fas fa-trash-alt float-right i1"></i></button>
                                 </form>
                             </td>
                         </tr>

@@ -61,7 +61,7 @@
                                 <form action="{{ route('admin.role.destroy', $role->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit"  name="submit" value="Delete">
+                                    <button type="submit"  name="submit" value="Delete" onclick="return confirm('bạn có chắc muốn xóa không')">
                                         <i class="fas fa-trash-alt float-right i1"></i>
                                     </button>
                                 </form>
