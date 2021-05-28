@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoredepartmentRequest;
 use App\Models\Department;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -19,8 +20,8 @@ class DepartmentController extends Controller
     public function index(Request $request)
     {
         $data = [];
-        $departments = Department::where('name', 'like', '%' . $request->name . '%')->withCount('workers')->get();
-
+        $departments = Department::where('name', 'like', '%' . $request->name . '%')->withCount('workers')->paginate(7);
+        
         // if(!empty($request->name)){
         //     $departments = $departments->where('name', 'like', '%' . $request->name . '%')->get();
         // }
@@ -47,7 +48,7 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoredepartmentRequest $request)
     {
         $departmentInsert = [
             'name' => $request->name,

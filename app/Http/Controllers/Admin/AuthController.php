@@ -60,13 +60,7 @@ class AuthController extends Controller
                     'active' => 'You must be active to login.'
                 ]);
         }
-
-
-
-
-
-
-
+    
 
 
 
@@ -93,6 +87,19 @@ class AuthController extends Controller
         //     //...code tùy chọn
         //     //đăng nhập thất bại hiển thị đăng nhập thất bại
         // }
+    }
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        // $request->session()->invalidate();
+
+        // $request->session()->regenerateToken();
+
+        // auth()->guard('admin')->logout();
+        // \Session::flush();
+        \Session::put('success','You are logout successfully');        
+        return redirect(route('admin.login'));
     }
 
 }

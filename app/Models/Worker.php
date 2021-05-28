@@ -9,6 +9,7 @@ class Worker extends Model
 {
     use HasFactory;
     protected $table = 'workers';
+    // protected $dates = ['day_work'];
 
     protected $fillable = [ 
         'code',

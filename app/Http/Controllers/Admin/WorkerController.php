@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreworkerRequest;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Worker;
@@ -21,7 +22,12 @@ class WorkerController extends Controller
     {
         // echo 111;die;
         $data = [];
-        $workers = Worker::where('name', 'like', '%' . $request->name . '%')->with('position')->paginate(5);
+        $workers = Worker::where('name', 'like', '%' . $request->name . '%')
+        ->orWhere('code', 'like', '%' . $request->name . '%')
+        ->orWhere('phone', 'like', '%' . $request->name . '%')
+        ->orWhere('day_work', 'like', '%' . $request->name . '%')
+        ->orWhere('day_work', 'like', '%' . $request->name . '%')
+        ->with('position')->paginate(10);
         $data['workers'] = $workers;
         return view('admin.workers.index', $data);
     }   
@@ -34,7 +40,9 @@ class WorkerController extends Controller
     public function create()
     {
         $data = [];
+        $worker = Worker::orderBy('created_at','DESC')->first();
         $departments = Department::get();
+        $data['workers'] = $worker;
         $data['departments'] = $departments;
         $positions = Position::get();
         $data['positions'] = $positions;
@@ -47,7 +55,7 @@ class WorkerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreworkerRequest $request)
     {
         $workerInsert = [
             'code' => $request->code,

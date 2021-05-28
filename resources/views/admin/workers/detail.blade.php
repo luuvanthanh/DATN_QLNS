@@ -82,7 +82,7 @@
                       </li>
                       <li> 
                         <span class="fa-li"><i class="fas fa-lg fa-calendar-alt"></i></span>
-                        Ngày vào làm: {{$worker->day_work}}
+                        Ngày vào làm: {{date('d/m/Y', strtotime($worker->day_work))}}
                       </li>
                     </ul>
                 </div>
@@ -112,7 +112,7 @@
                       </li>
                       <li>
                         <span class="fa-li"><i class="fas fa-lg fa-birthday-cake"></i></span>
-                        Ngày sinh: {{ $worker->birthday}}
+                        Ngày sinh: {{date('d/m/Y', strtotime($worker->birthday))}}
                       </li>
                       <li>
                         <span class="fa-li"><i class="fas fa-md fa-id-card"></i></span>
@@ -120,15 +120,15 @@
                       </li>
                       <li>
                         <span class="fa-li"><i class="fas fa-lg fa-calendar-alt"></i></span>
-                        Ngày cấp: {{ $worker->day_range}}
+                        Ngày cấp: {{ date('d/m/Y', strtotime($worker->day_range))}}
                       </li>
                       <li>
                         <span class="fa-li"><i class="fas fa-lg fa-paper-plane"></i></span>
-                        Nơi cấp: {{ $worker->day_range}}
+                        Nơi cấp: {{ $worker->issued_by}}
                       </li>
                       <li>
                         <span class="fa-li"><i class="fas fa-lg fa-home"></i></span>
-                        Địa chỉ: {{ $worker->issued_by}}
+                        Địa chỉ: {{ $worker->address}}
                       </li>
                     </ul>
                 </div>

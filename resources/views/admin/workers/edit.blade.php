@@ -68,7 +68,7 @@
                           <label for="name" class="required">Số CMND</label>
                           <input class="form-control" name="cmnd_no" type="text" value="{{$workers->cmnd_no}}" id="name">
                           <label for="name" class="required">Ngày cấp</label>
-                          <input class="form-control" name="day_range" type="date" value="{{$workers->day_range}}" id="name">
+                          <input class="form-control" name="day_range" type="date" value="{{$workers->day_range}}" id="datepicker">
                           <label for="name" class="required">Nơi cấp</label>
                           <input class="form-control" name="issued_by" type="text" value="{{$workers->issued_by}}" id="name">
                           <label for="name" class="required">Địa chỉ</label>
@@ -105,7 +105,7 @@
                           <label for="name" class="required">Email</label>
                           <input class="form-control" name="email" type="text" value="{{$workers->email}}" id="name">
                           <label for="name" class="required">Ngày vào làm</label>
-                          <input class="form-control" name="day_work" type="date" value="{{$workers->day_work}}" id="name">
+                          <input class="form-control" name="day_work" type="date" value="{{ $workers->day_work}}" id="datepicker">
                           <label for="name" class="required">Trạng thái</label>
                           <select class="form-control" id="status" name="status">
                             <option value="-1" {{$workers->status == -1 ? 'selected' : ''}} >Nghỉ việc</option>
@@ -127,9 +127,8 @@
                           <label for="name" class="required">Chức vụ</label>
                           <select class="form-control" id="education_id" name="position_id">
                             <option value=""></option>
-                            @if ($departments)
+                            @if ($positions)
                               @foreach ($positions as $positionID => $positionName)
-                                {{-- chu y $workers->department_id --}}
                                 <option value="{{ $positionID}}" {{  $workers->position_id == $positionID ? 'selected' : '' }}  >{{ $positionName}}</option>
                               @endforeach  
                             @endif
@@ -152,5 +151,9 @@
     </div>
   </div>
 </section>
-{{-- @include('admin.shared._notify') --}}
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
 @endsection

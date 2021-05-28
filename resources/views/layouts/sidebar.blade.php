@@ -143,7 +143,7 @@
           </li> --}}
         </ul>
 
-        <form action="}" method="POST">
+        <form action="{{ route('admin.logout')}}" method="POST">
           @csrf
           <button type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
         </form>

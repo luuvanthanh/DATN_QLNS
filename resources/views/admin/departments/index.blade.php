@@ -108,4 +108,5 @@
     </div>
   </div>
 </section>
+{{ $departments->appends(request()->input())->links() }}
 @endsection

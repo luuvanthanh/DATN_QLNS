@@ -56,7 +56,10 @@
                     @csrf
                     <div class="form-group"	>
                         <label for="name" class="required">Tên phòng ban</label>
-                        <input class="form-control" name="name" type="text" value="" id="name">
+                        <input class="form-control" name="name" type="text" value="{{old('name')}}" id="name">
+                        @error('name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                         @enderror
                         <input class="form-control" name="slug" type="hidden" value="">
                     </div>
                     <div class="card-footer">
