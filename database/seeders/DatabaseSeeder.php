@@ -20,11 +20,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(PermissionSeeder::class);
         // $this->call(RoleSeeder::class);
         // $this->call(WorkerSeeder::class);
-<<<<<<< HEAD
         // $this->call(PositionSeeder::class);
        
-=======
-        $this->call(PositionSeeder::class);
->>>>>>> 322a2f9aefc0ec0b263109b93ee0a6b3f7c24bf0
     }
 }

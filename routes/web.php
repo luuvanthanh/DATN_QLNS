@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\WorkerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ProfileController;
 
 
 /*
@@ -37,6 +38,9 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
 
     // Admin Dashboard
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('changePassword', [ProfileController::class, 'changePassword'])->name('changePassword');
 
      // departments
     Route::group(['prefix' => 'departments', 'as' => 'departments.'], function () {
@@ -71,6 +75,15 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
         Route::delete('/delete/{id}', [UserController::class, 'destroy'])->middleware('checkRole:user-delete')->name('destroy');
     });
 
+    Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
+        Route::get('/list', [RoleController::class, 'index'])->name('index');
+        Route::get('/create', [RoleController::class, 'create'])->name('create');
+        Route::post('/store', [RoleController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');
+    });
+
     // Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
     //     Route::get('/list', [RoleController::class, 'index'])->middleware('checkRole:role-list')->name('index');
     //     Route::get('/create', [RoleController::class, 'create'])->middleware('checkRole:role-add')->name('create');
@@ -79,15 +92,6 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     //     Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
     //     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->middleware('checkRole:role-delete')->name('destroy');
     // });
-
-    Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
-        Route::get('/list', [RoleController::class, 'index'])->middleware('checkRole:role-list')->name('index');
-        Route::get('/create', [RoleController::class, 'create'])->middleware('checkRole:role-add')->name('create');
-        Route::post('/store', [RoleController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [RoleController::class, 'edit'])->middleware('checkRole:role-edit')->name('edit');
-        Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->middleware('checkRole:role-delete')->name('destroy');
-    });
 
 });
 
