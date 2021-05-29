@@ -121,7 +121,7 @@
                           </select>
                           <label for="name" class="required">Chức vụ</label>
                           <select class="form-control" id="" name="position_name">
-                            <option value="1"></option>
+                            <option value=""></option>
                             @if (!empty($positions))
                               @foreach ($positions as $position)
                               <option value="{{ $position->id}}">{{ $position->name}}</option>

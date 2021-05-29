@@ -58,7 +58,7 @@ class DepartmentController extends Controller
         try {
             Department::create($departmentInsert);
             DB::commit();
-            return redirect()->route('admin.departments.index')->with('sucess', 'Insert into data to Departments Sucessful.');
+            return redirect()->route('admin.departments.index')->with('success', 'Insert into data to Departments Sucessful.');
         } catch (\Exception $ex) {
             DB::rollBack();
             Log::error($ex->getMessage());

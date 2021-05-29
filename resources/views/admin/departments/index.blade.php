@@ -2,6 +2,11 @@
 @section('title', 'list department')
 
 @section('content')
+@if (session('success'))
+  <div class="alert alert-success">
+      {{ session('success') }}
+  </div>
+@endif
 <section class="content">
   <div class="row">
     <div class="col-12">

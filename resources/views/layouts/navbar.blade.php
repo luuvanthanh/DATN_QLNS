@@ -15,9 +15,12 @@
               <i class="fas fa-user mr-2"></i> Thông tin cá nhân
             </a>
           <div class="dropdown-divider"></div>
-            <a href="{{ route('admin.logout')}}" class="dropdown-item">
+          <form action="{{ route('admin.logout') }}" method="POST">
+            @csrf
+            <a href="{{ route('admin.logout') }}" class="dropdown-item">
               <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
             </a>
+          </form>
           </div>
         </li>
       </ul>

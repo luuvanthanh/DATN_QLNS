@@ -169,10 +169,10 @@
           </li> --}}
             </ul>
 
-            <form action="{{ route('admin.logout') }}" method="POST">
+            {{-- <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Logout</button>
-            </form>
+            </form> --}}
         </nav>
         <!-- /.sidebar-menu -->
     </div>

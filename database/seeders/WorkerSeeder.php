@@ -14,7 +14,6 @@ class WorkerSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\Worker::factory(10)->create();
         $data = [
             [
                 'code' => 'NV01',

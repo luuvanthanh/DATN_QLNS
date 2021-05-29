@@ -29,6 +29,8 @@ class StoreworkerRequest extends FormRequest
             'phone' => 'required|unique:workers|numeric',
             'email' => 'required|email|unique:workers|min:5|max:255',
             'school' => 'required|min:5|max:255',
+            'department_id' => 'required',
+            'position_id' => 'required',
         ];
     }
     public function messages()

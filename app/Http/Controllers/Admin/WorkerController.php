@@ -83,7 +83,7 @@ class WorkerController extends Controller
             // insert into table workers
             Worker::create($workerInsert);
             DB::commit();
-            return redirect()->route('admin.workers.index')->with('sucess', 'Insert into data to Workers Sucessful.');
+            return redirect()->route('admin.workers.index')->with('success', 'Insert into data to Workers Sucessful.');
         } catch (\Exception $ex) {
             DB::rollBack();
             Log::error($ex->getMessage());
