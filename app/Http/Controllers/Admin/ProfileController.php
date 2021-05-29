@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -18,7 +19,24 @@ class ProfileController extends Controller
     }
     
     public function updateprofile(Request $request){
+      $userId = Auth::user()->id;
+      $user = User::findOrFail($userId);
+      $user->name = $request->get('name');
+      $user->email = $request->get('email');
+      $validatedData = $request->validate([
+        'name' => 'required|min:5|max:255',
+        'email' => 'required|email',
+      ]);
+      DB::beginTransaction();
+      try{
+          $user->save();
 
+          DB::commit();
+          return redirect()->back()->with("success","info changed successfully !");
+      }catch(\Exception $ex){
+          DB::rollback();
+          return redirect()->back()->with('error',$ex->getMessage());
+      }
     }
 
     public function changePassword(Request $request)
@@ -35,12 +53,23 @@ class ProfileController extends Controller
         'current_password' => 'required',
         'new_password' => 'required|string|min:5|confirmed',
       ]);
-      $user = Auth::user()->id;
-      // $user = User::findOrFail($userId);
+      $userId = Auth::user()->id;
+      $user = User::findOrFail($userId);
       $user->password = bcrypt($request->get('new_password'));
-      $user->save();
+      // $user->save();
 
-      return redirect()->back()->with("success","Password changed successfully !");
+      // return redirect()->back()->with("success","Password changed successfully !");
+      // 
+      DB::beginTransaction();
+      try{
+          $user->save();
+
+          DB::commit();
+          return redirect()->back()->with("success","Password changed successfully !");
+      }catch(\Exception $ex){
+          DB::rollback();
+          return redirect()->back()->with('error',$ex->getMessage());
+      }
       
     }
 }
