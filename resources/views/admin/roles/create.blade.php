@@ -9,6 +9,33 @@
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 @section('content')
+    {{-- ------nav--- --}}
+    {{-- <div class="card ">
+        <nav class=" navbar navbar-expand navbar-white navbar-light" style="border-radius: 10px;">
+          <ul class=" navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <button class="btn nav-link" data-toggle="dropdown">
+                <i class="fas fa-cog"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href= class="dropdown-item">
+                  <i class="fas fa-user mr-2"></i> Thông tin cá nhân
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href= class="dropdown-item">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+    </div> --}}
+    {{-- ------end nav-------- --}}
     <div class="row mb-2">
         <div class="col-sm-6">
         <h2 class="m-0 text-dark">Quản lý phân quyền</h2>
@@ -30,7 +57,7 @@
                 <div class="card-body">
                     <form action="{{ route('admin.role.store')}}" method="POST" role="">
                         @csrf
-                        <div class="form-group mb-5">
+                        <div class="form-group mb-5 ">
                             <label for="">Vai trò:</label>
                             <input type="text" name="name" class="form-control " id="" placeholder="">
                             @error('name')
@@ -65,7 +92,6 @@
                                 </tbody>
                             </table>
                         </div>
-
 
                         <div class="form-group">
                             <a href="{{ route('admin.role.index') }}" class="btn btn-secondary">Quay lại</a>

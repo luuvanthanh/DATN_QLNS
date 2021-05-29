@@ -11,9 +11,9 @@
 
 <!-- Small boxes (Stat box) -->
 <div class="row">
-
+  {{-- ------nav --}}
   <div class="card ">
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class=" navbar navbar-expand navbar-white navbar-light" style="border-radius: 10px;">
       <ul class=" navbar-nav ">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
@@ -37,6 +37,7 @@
       </ul>
     </nav>
   </div>
+  {{-- ----endnav --}}
   <div class="row mb-2">
     <div class="col-sm-6">
       <h2 class="m-0 text-dark">Thống kê, báo cáo</h2>

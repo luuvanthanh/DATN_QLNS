@@ -171,7 +171,7 @@
 
             <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Logout</button>
+                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Đăng xuất</button>
             </form>
         </nav>
         <!-- /.sidebar-menu -->
