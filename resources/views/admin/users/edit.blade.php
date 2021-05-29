@@ -3,7 +3,33 @@
 @push('css')   <!-- tên css đặt cho đúng với tên của stack đã đặt trong css.blade.css -->
     {{-- <link rel="stylesheet" type="text/css" href="/css/categories/category-edit.css"> --}}
 @section('content')
-
+    {{-- ------nav--- --}}
+    {{-- <div class="card ">
+        <nav class=" navbar navbar-expand navbar-white navbar-light" style="border-radius: 10px;">
+          <ul class=" navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <button class="btn nav-link" data-toggle="dropdown">
+                <i class="fas fa-cog"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href= class="dropdown-item">
+                  <i class="fas fa-user mr-2"></i> Thông tin cá nhân
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href= class="dropdown-item">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+    </div> --}}
+    {{-- ------end nav-------- --}}
     <div class="row mb-2">
         <div class="col-sm-6">
         <h2 class="m-0 text-dark">Quản lý người dùng</h2>
@@ -16,12 +42,6 @@
         </ol>
         </div>
     </div>
-	{{-- -------------------hiển thị thông báo lỗi------------------------ --}}
-	@if($errors->any())
-        <?php echo implode('', $errors->all('<div>:message</div>')); ?>
-    @endif
-	{{-- -------------------------------------------- --}}
-
     <div class="col-md-9">
         <div class="card card-primary">
             <div class="card-header">

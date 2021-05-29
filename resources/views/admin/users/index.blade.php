@@ -9,22 +9,33 @@
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 @push('js')
 @section('content')
-    <!-- form search -->
-    <!-- create category link -->
-        {{-- <h3 class="text-center pt-5">Danh sách người dùng</h3> --}}
-    <!-- display list category table -->
-        {{-- <a href="{{(route('admin.user.create'))}}"><button class="btn btn-primary mb-2 mt-3" type="button">Thêm mới</button></a> --}}
-        {{-- show message --}}
-        @if(Session::has('success'))
-        <p class="text-success">{{ Session::get('success') }}</p>
-        @endif
-
-        {{-- show error message --}}
-        @if(Session::has('error'))
-            <p class="text-danger">{{ Session::get('error') }}</p>
-        @endif
-
-
+        {{-- ------nav--- --}}
+        {{-- <div class="card ">
+            <nav class=" navbar navbar-expand navbar-white navbar-light" style="border-radius: 10px;">
+              <ul class=" navbar-nav ">
+                <li class="nav-item">
+                  <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+              </ul>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <button class="btn nav-link" data-toggle="dropdown">
+                    <i class="fas fa-cog"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <a href= class="dropdown-item">
+                      <i class="fas fa-user mr-2"></i> Thông tin cá nhân
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href= class="dropdown-item">
+                      <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+        </div> --}}
+        {{-- ------end nav-------- --}}
         <div class="row mb-2">
             <div class="col-sm-6">
               <h2 class="m-0 text-dark">Quản lý người dùng</h2>  
@@ -39,6 +50,15 @@
             <div class="card">
               <h5 class="text-center mt-2 text-dark">Danh sách người dùng</h5>
               <div class="card-header">
+                {{-- show message --}}
+        @if(Session::has('success'))
+        <p class="text-success">{{ Session::get('success') }}</p>
+        @endif
+
+        {{-- show error message --}}
+        @if(Session::has('error'))
+            <p class="text-danger">{{ Session::get('error') }}</p>
+        @endif
                 <span class="float-right">
                   <a href="{{ route('admin.user.create')}}" class=" btn btn-primary">
                     <i class="fa fa-plus"></i> Thêm mới
