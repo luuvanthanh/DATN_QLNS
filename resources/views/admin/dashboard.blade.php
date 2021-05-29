@@ -11,6 +11,7 @@
 
 <!-- Small boxes (Stat box) -->
 <div class="row">
+<<<<<<< HEAD
   {{-- ------nav --}}
   <div class="card ">
     <nav class=" navbar navbar-expand navbar-white navbar-light" style="border-radius: 10px;">
@@ -38,6 +39,8 @@
     </nav>
   </div>
   {{-- ----endnav --}}
+=======
+>>>>>>> 54db47ffa441bdd699d0908f0e986f2498162e4f
   <div class="row mb-2">
     <div class="col-sm-6">
       <h2 class="m-0 text-dark">Thống kê, báo cáo</h2>
