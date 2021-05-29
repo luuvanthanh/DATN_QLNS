@@ -121,7 +121,9 @@ class UserController extends Controller
         // update data for table user
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = hash::make($request->password);
+        if($request->password != $user->password){
+            $user->password = hash::make($request->password);
+        }
         $user->status = $request->status;
         $user->role_id = $request->role_id;
 
@@ -144,8 +146,10 @@ class UserController extends Controller
             $user->save();
             
             DB::commit();
-
-            if (File::exists(public_path($avatarOld))) {
+            
+            if (File::exists(public_path($avatarOld))
+                && $request->hasFile('thumbnail') 
+                && $request->file('thumbnail')->isValid()) {
                 File::delete(public_path($avatarOld));
             }
 

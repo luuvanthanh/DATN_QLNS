@@ -8,52 +8,136 @@
 @endpush
 
 @section('content')
+
 <!-- Small boxes (Stat box) -->
 <div class="row">
-    {{-- <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>150</h3>
 
-          <p>New Orders</p>
+  <div class="card ">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <ul class=" navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <button class="btn nav-link" data-toggle="dropdown">
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a href= class="dropdown-item">
+              <i class="fas fa-user mr-2"></i> Thông tin cá nhân
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href= class="dropdown-item">
+              <i class="fas fa-sign-out-alt mr-2"></i> Đăng xuất
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="row mb-2">
+    <div class="col-sm-6">
+      <h2 class="m-0 text-dark">Thống kê, báo cáo</h2>
+    </div>
+    <div class="col-sm-6">
+      <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{{ route( 'admin.dashboard') }}">Trang chủ</a></li>
+      </ol>
+    </div>
+  </div>
+
+   <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="info-box">
+        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+        <div class="info-box-content">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              Tổng nhân viên
+              <span class="float-right badge bg-primary">{{$countUser}}</span>
+            </li>
+            <li class="nav-item">
+              Đã kích hoạt
+              <span class="float-right badge bg-info">{{$countUserActive}}</span>
+            </li>
+            <li class="nav-item">
+              Chưa kích hoạt
+              <span class="float-right badge bg-warning">{{$countUserUnActive}}</span>
+            </li>
+          </ul>
         </div>
-        <div class="icon">
-          <i class="ion ion-bag"></i>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+        <div class="info-box-content">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              Tổng nhân sự
+              <span class="float-right badge bg-primary">{{$countUser}}</span>
+            </li>
+            <li class="nav-item">
+              chính thức
+              <span class="float-right badge bg-info">{{$countWorkerActive}}</span>
+            </li>
+            <li class="nav-item">
+              nghỉ việc
+              <span class="float-right badge bg-warning">{{$countWorkerUnActive}}</span>
+            </li>
+          </ul>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    {{-- ----------------- EndWorker--------------- --}}
+    {{-- <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+        <div class="info-box-content">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              Tổng nhân sự
+              <span class="float-right badge bg-primary">{{$countUser}}</span>
+            </li>
+            <li class="nav-item">
+              chính thức
+              <span class="float-right badge bg-info">{{$countWorkerActive}}</span>
+            </li>
+            <li class="nav-item">
+              nghỉ việc
+              <span class="float-right badge bg-warning">{{$countWorkerUnActive}}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div> --}}
-    <!-- ./col -->
-    {{-- <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-success">
-        <div class="inner">
-          <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-          <p>Bounce Rate</p>
+    {{-- -------------------------------------------- --}}
+    {{-- <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+        <div class="info-box-content">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              Tổng nhân sự
+              <span class="float-right badge bg-primary">{{$countUser}}</span>
+            </li>
+            <li class="nav-item">
+              chính thức
+              <span class="float-right badge bg-info">{{$countWorkerActive}}</span>
+            </li>
+            <li class="nav-item">
+              nghỉ việc
+              <span class="float-right badge bg-warning">{{$countWorkerUnActive}}</span>
+            </li>
+          </ul>
         </div>
-        <div class="icon">
-          <i class="ion ion-stats-bars"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div> --}}
-    <!-- ./col -->
-    {{-- <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-warning">
-        <div class="inner">
-          <h3>44</h3>
 
-          <p>User Registrations</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-person-add"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
-    </div> --}}
     <!-- ./col -->
     {{-- <div class="col-lg-3 col-6">
       <!-- small box -->
@@ -68,12 +152,12 @@
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
-    </div> --}}
+    </div>  --}}
     <!-- ./col -->
   </div>
   <!-- /.row -->
   <!-- Main row -->
-  {{-- <div class="row">
+  <div class="row">
     <!-- Left col -->
     <section class="col-lg-7 connectedSortable">
       <!-- Custom tabs (Charts with tabs)-->
@@ -100,7 +184,7 @@
             <div class="chart tab-pane active" id="revenue-chart"
                  style="position: relative; height: 300px;">
                 <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-             </div>
+            </div>
             <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
               <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
             </div>
@@ -583,5 +667,5 @@
       <!-- /.card -->
     </section>
     <!-- right col -->
-  </div> --}}
+  </div> 
 @endsection

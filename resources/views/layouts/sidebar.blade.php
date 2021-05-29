@@ -2,24 +2,27 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
-      <img src="/admin_lte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <img src="/avatar/AdminLogo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3 text-center"
+            style="opacity: .8">
+        <span class="brand-text font-weight-light" style="font-family: sans-serif">Quản lí nhân sự</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="/admin_lte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid"
+                    style="width: 43px; height: auto; border-radius: 50%;">
+            </div>
+            <div class="info mt-2">
+                <a href="#" class="d-block"
+                    style="font-family: sans-serif; font-size: 17px;">{{ Auth::user()->name }}</a>
+            </div>
         </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
+        <!-- SidebarSearch Form -->
+        {{-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -28,15 +31,15 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> --}}
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          {{-- menu for home page --}}
-          <li>
+                {{-- menu for home page --}}
+                {{-- <li>
             <h5 class="text-muted">QUẢN LÝ NHÂN SỰ</h5>
           </li>
           <li class="nav-item {{ Route::currentRouteName() == 'admin.dashboard' ? 'menu-open' : '' }}">
@@ -59,25 +62,48 @@
               </p>
             </a>
           </li>
-          <li>
-            <h5 class="text-muted">QUẢN TRỊ HỆ THỐNG</h5>
-          </li>
-          <li class="nav-item border border-secondary rounded mt-1">
-            <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
-              <p>
-                Quản lí người dùng
-              </p>
-            </a>
-          </li>
-          <li class="nav-item border border-secondary rounded mt-1 mb-4">
-            <a href="{{ route('admin.role.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
-              <p>
-                Quản lí phân quyền 
-              </p>
-            </a>
-          </li>
-          {{-- menu of category module --}}
-          {{-- @php
+          <li> --}}
+                <li class="nav-header mt-1">QUẢN LÝ NHÂN SỰ</li>
+                <li class="nav-item">
+                    <a href={{ route('admin.dashboard') }}
+                        class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>Thống kê, báo cáo</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('admin.workers.index') }}
+                        class="nav-link {{ Route::currentRouteName() == 'admin.workers.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Quản lý nhân viên</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('admin.departments.index') }}
+                        class="nav-link {{ Route::currentRouteName() == 'admin.departments.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>Quản lý phòng ban</p>
+                    </a>
+                </li>
+                {{-- -----------Quản trị hệ thống----  --}}
+                <li class="nav-header mt-3">QUẢN TRỊ HỆ THỐNG</li>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('admin.user.index') }}
+                        class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Quản lý người dùng</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('admin.role.index') }}
+                        class="nav-link {{ Route::currentRouteName() == 'admin.role.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-shield"></i>
+                        <p>Quản lý phân quyền</p>
+                    </a>
+                </li>
+                {{-- menu of category module --}}
+                {{-- @php
             $routeCategoryArr = [
               'admin.category.index',
               'admin.category.create',
@@ -85,7 +111,7 @@
               'admin.category.show',
             ];
           @endphp --}}
-          {{-- <li class="nav-item {{ in_array(Route::currentRouteName(), $routeCategoryArr) ? 'menu-open' : '' }}">
+                {{-- <li class="nav-item {{ in_array(Route::currentRouteName(), $routeCategoryArr) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -109,8 +135,8 @@
             </ul>
           </li> --}}
 
-          {{-- menu of post module --}}
-          {{-- @php
+                {{-- menu of post module --}}
+                {{-- @php
             $routePostArr = [
               'admin.post.index',
               'admin.post.create',
@@ -118,7 +144,7 @@
               'admin.post.show',
             ];
           @endphp --}}
-          {{-- <li class="nav-item {{ in_array(Route::currentRouteName(), $routePostArr) ? 'menu-open' : '' }}">
+                {{-- <li class="nav-item {{ in_array(Route::currentRouteName(), $routePostArr) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -141,14 +167,14 @@
               </li>
             </ul>
           </li> --}}
-        </ul>
+            </ul>
 
-        <form action="{{ route('admin.logout')}}" method="POST">
-          @csrf
-          <button type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
-        </form>
-      </nav>
-      <!-- /.sidebar-menu -->
+            <form action="{{ route('admin.logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Logout</button>
+            </form>
+        </nav>
+        <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
+</aside>
