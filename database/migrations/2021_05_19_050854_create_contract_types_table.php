@@ -13,7 +13,7 @@ class CreateContractTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('contractTypes', function (Blueprint $table) {
+        Schema::create('contract_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->nullable();
@@ -28,6 +28,6 @@ class CreateContractTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contractTypes');
+        Schema::dropIfExists('contract_types');
     }
 }

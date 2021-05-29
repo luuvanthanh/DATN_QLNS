@@ -38,5 +38,6 @@
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 <script src="/adminlte/plugins/jquery-ui/jquery-1.12.4.js"></script>
 <script src="/adminlte/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="/adminlte/dist/js/myscript.js"></script>
 {{-- declare other file script use private --}}
 @stack('js')

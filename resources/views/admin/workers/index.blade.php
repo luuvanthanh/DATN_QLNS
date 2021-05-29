@@ -9,10 +9,10 @@
         <div class="col-sm-6">
           <h2 class="m-0 text-dark">Quản lý nhân viên</h2>
           @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+              <div class="alert alert-success">
+                  {{ session('success') }}
+              </div>
+          @endif
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">

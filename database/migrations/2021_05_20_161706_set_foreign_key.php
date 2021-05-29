@@ -63,9 +63,9 @@ class SetForeignKey extends Migration
         }
 
          // SET foreign key for table contracts (contracts.contract_type_id = contractTypes.id)
-         if (Schema::hasColumn('contracts', 'contract_type_id') && Schema::hasTable('contractTypes')) {
+         if (Schema::hasColumn('contracts', 'contract_type_id') && Schema::hasTable('contract_types')) {
             Schema::table('contracts', function (Blueprint $table) {
-                $table->foreign('contract_type_id')->references('id')->on('contractTypes');
+                $table->foreign('contract_type_id')->references('id')->on('contract_types');
             });
         }
 

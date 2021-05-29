@@ -16,7 +16,7 @@ class WorkerSeeder extends Seeder
     {
         $data = [
             [
-                'code' => 'NV01',
+                'code' => '#000000001',
                 'name' => 'Lưu Văn Thanh',
                 'status' => 0,
                 'birthday' => '1999-01-29',
@@ -32,7 +32,7 @@ class WorkerSeeder extends Seeder
                 'department_id' => 1
             ],
             [
-                'code' => 'NV02',
+                'code' => '#000000002',
                 'name' => 'Đỗ Văn Sang',
                 'status' => 0,
                 'birthday' => '1999-01-29',
@@ -48,7 +48,7 @@ class WorkerSeeder extends Seeder
                 'department_id' => 1
             ],
             [
-                'code' => 'NV03',
+                'code' => '#000000003',
                 'name' => 'Nguyễn Văn Tài',
                 'status' => 0,
                 'birthday' => '1999-01-29',

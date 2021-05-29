@@ -171,13 +171,9 @@
 
             {{-- <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
-<<<<<<< HEAD
                 <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Logout</button>
             </form> --}}
-=======
-                <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Đăng xuất</button>
-            </form>
->>>>>>> 2540ac145d1f1505474202a72003ca08b3896356
+                
         </nav>
         <!-- /.sidebar-menu -->
     </div>

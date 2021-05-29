@@ -16,6 +16,7 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('content');
             $table->string('slug')->nullable();
             $table->timestamps();
         });
