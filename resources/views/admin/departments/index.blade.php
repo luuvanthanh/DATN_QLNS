@@ -71,8 +71,8 @@
                           <form action="{{ route('admin.departments.destroy', $department->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm ">
-                              <i class="fas fa-trash"></i>
+                            <button type="submit"  class="btn btn-danger btn-sm">
+                              <i class="fas fa-trash" ></i>
                             </button>
                           </form>
                       </td>

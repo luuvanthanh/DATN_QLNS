@@ -19,9 +19,7 @@ class CreateContractsTable extends Migration
             $table->date('end_day')->nullable();
             $table->string('wage')->nullable();
             $table->boolean('status')->default(1)->nullable();
-            $table->unsignedBigInteger('worker_id')->nullable();
             $table->unsignedBigInteger('contract_type_id')->nullable();
-            $table->unsignedBigInteger('record_id')->nullable();
             $table->timestamps();
 
            

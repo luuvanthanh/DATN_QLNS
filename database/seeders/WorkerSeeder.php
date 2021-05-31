@@ -29,7 +29,8 @@ class WorkerSeeder extends Seeder
                 'school' => 'SPKT',
                 'skill' => 'a',
                 'status' => 1,
-                'department_id' => 1
+                'department_id' => 1,
+                'position_id' => 1
             ],
             [
                 'code' => '#000000002',
@@ -45,7 +46,8 @@ class WorkerSeeder extends Seeder
                 'school' => 'SPKT',
                 'skill' => 'a',
                 'status' => 1,
-                'department_id' => 1
+                'department_id' => 1,
+                'position_id' => 1
             ],
             [
                 'code' => '#000000003',
@@ -61,7 +63,8 @@ class WorkerSeeder extends Seeder
                 'school' => 'SPKT',
                 'skill' => 'a',
                 'status' => 1,
-                'department_id' => 2
+                'department_id' => 2,
+                'position_id' => 1
             ],
         ];
         DB::table('workers')->insert($data);
