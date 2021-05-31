@@ -51,9 +51,11 @@
               <h5 class="text-center mt-2 text-dark">Danh sách người dùng</h5>
               <div class="card-header">
                 {{-- show message --}}
-        @if(Session::has('success'))
-        <p class="text-success">{{ Session::get('success') }}</p>
-        @endif
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+              @endif
 
         {{-- show error message --}}
         @if(Session::has('error'))

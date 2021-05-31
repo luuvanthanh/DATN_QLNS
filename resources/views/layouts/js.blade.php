@@ -7,6 +7,14 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/adminlte/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+{{-- ---------hightchart--------------- --}}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
@@ -41,3 +49,62 @@
 <script src="/adminlte/dist/js/myscript.js"></script>
 {{-- declare other file script use private --}}
 @stack('js')
+
+
+{{-- ---------hightchart--------------- --}}
+{{-- <script>
+  const chart = Highcharts.chart('container', {
+      title: {
+          text: 'Biểu đồ thống kê nhân sự'
+      },
+      subtitle: {
+          text: 'Plain'
+      },
+      xAxis: {
+          categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
+      },
+      series: [{
+          type: 'column',
+          colorByPoint: true,
+          data: [1, 5, 7, 3, 1, 5, 4, 6, 0, 4, 4, 3],
+          showInLegend: false
+      }]
+  });
+
+  document.getElementById('plain').addEventListener('click', () => {
+      chart.update({
+          chart: {
+              inverted: false,
+              polar: false
+          },
+          subtitle: {
+              text: 'Plain'
+          }
+      });
+  });
+
+  document.getElementById('inverted').addEventListener('click', () => {
+      chart.update({
+          chart: {
+              inverted: true,
+              polar: false
+          },
+          subtitle: {
+              text: 'Inverted'
+          }
+      });
+  });
+
+  document.getElementById('polar').addEventListener('click', () => {
+      chart.update({
+          chart: {
+              inverted: false,
+              polar: true
+          },
+          subtitle: {
+              text: 'Polar'
+          }
+      });
+  });
+
+</script> --}}

@@ -2,96 +2,79 @@
 
 @section('title', 'CMS - Home Page')
 
-{{-- import file css (private) --}}
-@push('css')
-    
-@endpush
+    {{-- import file css (private) --}}
+    @push('css')
+
+    @endpush
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 @section('content')
 
-<!-- Small boxes (Stat box) -->
-<div class="row">
-  
-  <div class="row mb-2">
-    <div class="col-sm-6">
-      <h2 class="m-0 text-dark">Thống kê, báo cáo</h2>
-    </div>
-    <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item"><a href="{{ route( 'admin.dashboard') }}">Trang chủ</a></li>
-      </ol>
-    </div>
-  </div>
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
 
-   <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="info-box">
-        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
-        <div class="info-box-content">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              Tổng nhân viên
-              <span class="float-right badge bg-primary">{{$countUser}}</span>
-            </li>
-            <li class="nav-item">
-              Đã kích hoạt
-              <span class="float-right badge bg-info">{{$countUserActive}}</span>
-            </li>
-            <li class="nav-item">
-              Chưa kích hoạt
-              <span class="float-right badge bg-warning">{{$countUserUnActive}}</span>
-            </li>
-          </ul>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h2 class="m-0 text-dark">Thống kê, báo cáo</h2>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Trang chủ</a></li>
+                </ol>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box">
-        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-        <div class="info-box-content">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              Tổng nhân sự
-              <span class="float-right badge bg-primary">{{$countUser}}</span>
-            </li>
-            <li class="nav-item">
-              chính thức
-              <span class="float-right badge bg-info">{{$countWorkerActive}}</span>
-            </li>
-            <li class="nav-item">
-              nghỉ việc
-              <span class="float-right badge bg-warning">{{$countWorkerUnActive}}</span>
-            </li>
-          </ul>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="info-box">
+                <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                <div class="info-box-content">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            Tổng nhân viên
+                            <span class="float-right badge bg-primary">{{ $countUser }}</span>
+                        </li>
+                        <li class="nav-item">
+                            Đã kích hoạt
+                            <span class="float-right badge bg-info">{{ $countUserActive }}</span>
+                        </li>
+                        <li class="nav-item">
+                            Chưa kích hoạt
+                            <span class="float-right badge bg-warning">{{ $countUserUnActive }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    {{-- ----------------- EndWorker--------------- --}}
-    {{-- <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box">
-        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-        <div class="info-box-content">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              Tổng nhân sự
-              <span class="float-right badge bg-primary">{{$countUser}}</span>
-            </li>
-            <li class="nav-item">
-              chính thức
-              <span class="float-right badge bg-info">{{$countWorkerActive}}</span>
-            </li>
-            <li class="nav-item">
-              nghỉ việc
-              <span class="float-right badge bg-warning">{{$countWorkerUnActive}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div> --}}
 
-    {{-- -------------------------------------------- --}}
-    {{-- <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                <div class="info-box-content">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            Tổng nhân sự
+                            <span class="float-right badge bg-primary">{{ $countUser }}</span>
+                        </li>
+                        <li class="nav-item">
+                            chính thức
+                            <span class="float-right badge bg-info">{{ $countWorkerActive }}</span>
+                        </li>
+                        <li class="nav-item">
+                            nghỉ việc
+                            <span class="float-right badge bg-warning">{{ $countWorkerUnActive }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{-- ----------------- EndWorker--------------- --}}
+        {{-- <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
         <div class="info-box-content">
@@ -113,8 +96,31 @@
       </div>
     </div> --}}
 
-    <!-- ./col -->
-    {{-- <div class="col-lg-3 col-6">
+        {{-- -------------------------------------------- --}}
+        {{-- <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+        <div class="info-box-content">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              Tổng nhân sự
+              <span class="float-right badge bg-primary">{{$countUser}}</span>
+            </li>
+            <li class="nav-item">
+              chính thức
+              <span class="float-right badge bg-info">{{$countWorkerActive}}</span>
+            </li>
+            <li class="nav-item">
+              nghỉ việc
+              <span class="float-right badge bg-warning">{{$countWorkerUnActive}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div> --}}
+
+        <!-- ./col -->
+        {{-- <div class="col-lg-3 col-6">
       <!-- small box -->
       <div class="small-box bg-danger">
         <div class="inner">
@@ -127,16 +133,16 @@
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
-    </div>  --}}
-    <!-- ./col -->
-  </div>
-  <!-- /.row -->
-  <!-- Main row -->
-  <div class="row">
-    <!-- Left col -->
-    <section class="col-lg-7 connectedSortable">
-      <!-- Custom tabs (Charts with tabs)-->
-      <div class="card">
+    </div> --}}
+        <!-- ./col -->
+    </div>
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            {{-- <div class="card">
         <div class="card-header">
           <h3 class="card-title">
             <i class="fas fa-chart-pie mr-1"></i>
@@ -165,11 +171,22 @@
             </div>
           </div>
         </div><!-- /.card-body -->
-      </div>
-      <!-- /.card -->
+      </div> --}}
+            <!-- /.card -->
 
-      <!-- DIRECT CHAT -->
-      <div class="card direct-chat direct-chat-primary">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p class="highcharts-description">
+                    {{-- Chart with buttons to modify options, showing how options can be changed
+                    on the fly. This flexibility allows for more dynamic charts. --}}
+                </p>
+
+                <button class="btn btn-secondary" id="plain">Plain</button>
+                <button class="btn btn-secondary" id="inverted">Inverted</button>
+                <button class="btn btn-secondary" id="polar">Polar</button>
+            </figure>
+            <!-- DIRECT CHAT -->
+            {{-- <div class="card direct-chat direct-chat-primary">
         <div class="card-header">
           <h3 class="card-title">Direct Chat</h3>
 
@@ -367,11 +384,11 @@
           </form>
         </div>
         <!-- /.card-footer-->
-      </div>
-      <!--/.direct-chat -->
+      </div> --}}
+            <!--/.direct-chat -->
 
-      <!-- TO DO List -->
-      <div class="card">
+            <!-- TO DO List -->
+            {{-- <div class="card">
         <div class="card-header">
           <h3 class="card-title">
             <i class="ion ion-clipboard mr-1"></i>
@@ -498,12 +515,12 @@
         <div class="card-footer clearfix">
           <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
         </div>
-      </div>
-      <!-- /.card -->
-    </section>
-    <!-- /.Left col -->
-    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-    <section class="col-lg-5 connectedSortable">
+      </div> --}}
+            <!-- /.card -->
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        {{-- <section class="col-lg-5 connectedSortable">
 
       <!-- Map card -->
       <div class="card bg-gradient-primary">
@@ -640,7 +657,69 @@
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-    </section>
-    <!-- right col -->
-  </div> 
+    </section> --}}
+        <!-- right col -->
+    </div>
+
+    <script>
+      var categoryData = <?php echo json_encode($categoryData) ?>;
+      var dataChart = <?php echo json_encode($dataChart) ?>;
+      const chart = Highcharts.chart('container', {
+          title: {
+              text: 'Biểu đồ thống kê nhân sự'
+          },
+          subtitle: {
+              // text: 'Plain'
+          },
+          xAxis: {
+            // cột này là trục x
+              categories: categoryData
+              // categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
+          },
+          series: [{
+              type: 'column',
+              colorByPoint: true,
+              // data: [1, 5, 7, 3, 1, 5, 4, 6, 0, 4, 4, 3], // đây là cái data mà em cần đưa vào
+              data: dataChart, // đây là cái data mà em cần đưa vào
+              showInLegend: false
+          }]
+      });
+    
+      document.getElementById('plain').addEventListener('click', () => {
+          chart.update({
+              chart: {
+                  inverted: false,
+                  polar: false
+              },
+              subtitle: {
+                  text: 'Plain'
+              }
+          });
+      });
+    
+      document.getElementById('inverted').addEventListener('click', () => {
+          chart.update({
+              chart: {
+                  inverted: true,
+                  polar: false
+              },
+              subtitle: {
+                  text: 'Inverted'
+              }
+          });
+      });
+    
+      document.getElementById('polar').addEventListener('click', () => {
+          chart.update({
+              chart: {
+                  inverted: false,
+                  polar: true
+              },
+              subtitle: {
+                  text: 'Polar'
+              }
+          });
+      });
+    
+    </script>
 @endsection

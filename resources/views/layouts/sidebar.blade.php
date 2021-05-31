@@ -86,22 +86,25 @@
                     </a>
                 </li>
                 {{-- -----------Quản trị hệ thống----  --}}
-                <li class="nav-header mt-3">QUẢN TRỊ HỆ THỐNG</li>
-                </li>
-                <li class="nav-item">
-                    <a href={{ route('admin.user.index') }}
-                        class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Quản lý người dùng</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href={{ route('admin.role.index') }}
-                        class="nav-link {{ Route::currentRouteName() == 'admin.role.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user-shield"></i>
-                        <p>Quản lý phân quyền</p>
-                    </a>
-                </li>
+                {{-- kiểm tra nếu role_id==1 (tức supperadmin) thì hiển thị 2 module này --}}
+                @if(Auth::user()->role_id == 1)
+                    <li class="nav-header mt-3">QUẢN TRỊ HỆ THỐNG</li>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.user.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.user.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>Quản lý người dùng</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.role.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.role.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user-shield"></i>
+                            <p>Quản lý phân quyền</p>
+                        </a>
+                    </li>
+                @endif
                 {{-- menu of category module --}}
                 {{-- @php
             $routeCategoryArr = [

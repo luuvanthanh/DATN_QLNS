@@ -41,7 +41,7 @@ class AuthController extends Controller
         {
             $user = auth()->guard('web')->user();
             
-            \Session::put('success','You are Login successfully!!');
+            \Session::put('successs','You are Login successfully!!');
             return redirect()->route('admin.login');
             
         }  else {
