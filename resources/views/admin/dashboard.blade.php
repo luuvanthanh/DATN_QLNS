@@ -4,6 +4,8 @@
 
     {{-- import file css (private) --}}
     @push('css')
+      <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" /> 
+      <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     @endpush
 
@@ -36,7 +38,7 @@
                 <div class="info-box-content">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            Tổng nhân viên
+                            Tổng người dùng
                             <span class="float-right badge bg-primary">{{ $countUser }}</span>
                         </li>
                         <li class="nav-item">
@@ -59,7 +61,7 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             Tổng nhân sự
-                            <span class="float-right badge bg-primary">{{ $countUser }}</span>
+                            <span class="float-right badge bg-primary">{{ $countWorker }}</span>
                         </li>
                         <li class="nav-item">
                             chính thức
@@ -181,9 +183,7 @@
                     on the fly. This flexibility allows for more dynamic charts. --}}
                 </p>
 
-                <button class="btn btn-secondary" id="plain">Plain</button>
-                <button class="btn btn-secondary" id="inverted">Inverted</button>
-                <button class="btn btn-secondary" id="polar">Polar</button>
+                
             </figure>
             <!-- DIRECT CHAT -->
             {{-- <div class="card direct-chat direct-chat-primary">
@@ -660,66 +660,59 @@
     </section> --}}
         <!-- right col -->
     </div>
-
+    {{-- ----------chart---------- --}}
     <script>
       var categoryData = <?php echo json_encode($categoryData) ?>;
-      var dataChart = <?php echo json_encode($dataChart) ?>;
-      const chart = Highcharts.chart('container', {
+      var dataChart1 = <?php echo json_encode($dataChart1) ?>;
+      var dataChart2 = <?php echo json_encode($dataChart2) ?>;
+      var dataChart3 = <?php echo json_encode($dataChart3) ?>;
+      Highcharts.chart('container', {
+          chart: {
+              type: 'column'
+          },
           title: {
-              text: 'Biểu đồ thống kê nhân sự'
+              text: 'Biểu đồ quản lí nhân sự theo tháng'
           },
           subtitle: {
-              // text: 'Plain'
+              text: ''
           },
           xAxis: {
             // cột này là trục x
               categories: categoryData
               // categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
           },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'số lượng'
+              }
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y:.f}</b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
           series: [{
-              type: 'column',
-              colorByPoint: true,
-              // data: [1, 5, 7, 3, 1, 5, 4, 6, 0, 4, 4, 3], // đây là cái data mà em cần đưa vào
-              data: dataChart, // đây là cái data mà em cần đưa vào
-              showInLegend: false
+              name: 'Chính thức',
+              data: dataChart1,
+          }, {
+              name: 'Nghỉ việc',
+              data: dataChart2,
+
+          }, {
+              name: 'Thử việc',
+              data: dataChart3,
+
           }]
       });
-    
-      document.getElementById('plain').addEventListener('click', () => {
-          chart.update({
-              chart: {
-                  inverted: false,
-                  polar: false
-              },
-              subtitle: {
-                  text: 'Plain'
-              }
-          });
-      });
-    
-      document.getElementById('inverted').addEventListener('click', () => {
-          chart.update({
-              chart: {
-                  inverted: true,
-                  polar: false
-              },
-              subtitle: {
-                  text: 'Inverted'
-              }
-          });
-      });
-    
-      document.getElementById('polar').addEventListener('click', () => {
-          chart.update({
-              chart: {
-                  inverted: false,
-                  polar: true
-              },
-              subtitle: {
-                  text: 'Polar'
-              }
-          });
-      });
-    
     </script>
 @endsection

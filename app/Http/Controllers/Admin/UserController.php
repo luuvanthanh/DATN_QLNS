@@ -73,7 +73,7 @@ class UserController extends Controller
             User::create($dataInsert);
             DB::commit();
             // success
-            return redirect()->route('admin.user.index')->with('success', 'Insert successful!');
+            return redirect()->route('admin.user.index')->with('success', 'Thêm người dùng thành công!');
         } catch (\Exception $ex) {
             DB::rollback();
 
@@ -123,9 +123,9 @@ class UserController extends Controller
         // update data for table user
         $user->name = $request->name;
         $user->email = $request->email;
-        if($request->password != $user->password){
-            $user->password = hash::make($request->password);
-        }
+        // if($request->password != $user->password){
+        //     $user->password = hash::make($request->password);
+        // }
         $user->status = $request->status;
         $user->role_id = $request->role_id;
 
@@ -156,7 +156,7 @@ class UserController extends Controller
             }
 
             // success
-            return redirect()->route('admin.user.index')->with('success', 'Update successful!');
+            return redirect()->route('admin.user.index')->with('success', 'Cập nhật người dùng thành công!');
         } catch (\Exception $ex) {
             DB::rollback();
             // dd($ex->getMessage());
@@ -181,7 +181,7 @@ class UserController extends Controller
             DB::commit();
 
             return redirect()->route('admin.user.index')
-                ->with('success', 'Delete User successful!');
+                ->with('success', 'Xóa người dùng thành công!');
         }  catch (\Exception $ex) {
             DB::rollBack();
             // have error so will show error message

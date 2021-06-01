@@ -12,11 +12,13 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid"
-                    style="width: 43px; height: auto; border-radius: 50%;">
+              <a href="{{ route('admin.profile') }}">
+                  <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid"
+                      style="width: 43px; height: auto; border-radius: 50%;">
+              </a>
             </div>
             <div class="info mt-2">
-                <a href="#" class="d-block"
+                <a href="{{ route('admin.profile') }}" class="d-block"
                     style="font-family: sans-serif; font-size: 17px;">{{ Auth::user()->name }}</a>
             </div>
         </div>

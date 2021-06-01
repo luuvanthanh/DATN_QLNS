@@ -68,13 +68,13 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group col-md-6">
+                            {{-- <div class="form-group col-md-6">
                                 <label for="">Mật khẩu:</label>
                                 <input type="text" value="{{$user->password}}" name="password" class="form-control ip-1" id="" placeholder="">
                                 @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="form-group mb-3">

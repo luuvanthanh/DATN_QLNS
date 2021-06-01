@@ -69,7 +69,7 @@ class RoleController extends Controller
             $roleCreate->permissions()->attach($request->permission);
             DB::commit();
             // success
-            return redirect()->route('admin.role.index')->with('success', 'Insert successful!');
+            return redirect()->route('admin.role.index')->with('success', 'Thêm vai trò thành công!');
             // dd($request->permission);
         } catch (\Exception $ex) {
             DB::rollback();
@@ -133,7 +133,7 @@ class RoleController extends Controller
 
             DB::commit();
             // success
-            return redirect()->route('admin.role.index')->with('success', 'Edit successful!');
+            return redirect()->route('admin.role.index')->with('success', 'Cập nhật vai trò thành công!');
             // dd($request->permission);
         } catch (\Exception $ex) {
             DB::rollback();
@@ -163,7 +163,7 @@ class RoleController extends Controller
             
             DB::commit();
             // success
-            return redirect()->route('admin.role.index')->with('success', 'Delete successful!');
+            return redirect()->route('admin.role.index')->with('success', 'Xóa vai trò thành công!');
             // dd($request->permission);
         } catch (\Exception $ex) {
             DB::rollback();
