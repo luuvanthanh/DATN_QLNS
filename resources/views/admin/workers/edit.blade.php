@@ -15,21 +15,28 @@
                 <li class="breadcrumb-item active">Thêm mới</li>
               </ol>
             </div>
-          </div>
+        </div>
+    </div>
         {{--  --}}
       <div class="col-md-9">
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Cập nhật nhân viên</h3>
+        <div class="card">
+          <div class="card-header p-2">
+            <ul class="nav nav-pills">
+              <li class="nav-item"><a class="active nav-link" href="#info" data-toggle="tab">Thông tin</a></li>
+              <li class="nav-item"><a class="nav-link" href="#record" data-toggle="tab">Hồ sơ</a></li>
+            </ul>
           </div>
+          <form action="{{ route('admin.workers.update', $workers->id)}}" method="post">
+            @csrf
+            @method('PUT')
           <div class="card-body">
-              </ul>
-            </div>
             {{--  --}}
             <div class="form-group">
-                <form action="{{ route('admin.workers.update', $workers->id)}}" method="post">
-                    @csrf
-                    @method('PUT')
+                
+              <div class="tab-content">
+                <div class="active tab-pane" id="info">
+                  <div class="form-group">
+
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group"	>
@@ -114,9 +121,37 @@
                           <a href="{{ route('admin.workers.index')}}" class="btn btn-secondary">Quay lại</a>
                         </div>
                     </div>
-                </form>   
+                  </div>
+                </div>
+                <div class="tab-pane" id="record">
+                      
+                  <div class="form-group clearfix row pl-4 pt-2">
+                      @if (!empty($records))
+                      @foreach ($records as $kRecord => $record)
+                      <div class="d-inline col-md-4">
+                        @php
+                          $recordOld = [];
+                          if (!empty(old('record'))) {
+                            $recordOld = old('record');
+                          }
+                        @endphp
+                        <input class="form-check-input" name="record[]" {{ in_array($record->id, $recordOld) ? 'checked' : '' }}   type="checkbox" value="{{$record->id }}" {{ $record->id == $record->record->record_id  ? 'checked' : ''}}  id="flexCheckDefault-{{ $kRecord }}">
+                        <label class="form-check-label" for="flexCheckDefault-{{ $kRecord }}">{{$record->name}}</label>
+                      </div>
+                      @endforeach
+                      @endif
+                    
+                    <div class="card-footer">
+                        <input class="btn btn-primary" type="submit" value="Lưu">
+                        <a href="{{ route('admin.workers.index')}}" class="btn btn-secondary">Quay lại</a>
+                    </div>
+                  
+              </div>
+                  </div>
+                 
             </div>
           </div>
+          </form>  
         </div>
       </div>
     </div>

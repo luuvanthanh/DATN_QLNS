@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreworkerRequest;
 use App\Models\Department;
 use App\Models\Position;
+use App\Models\Record;
 use App\Models\Worker;
+use App\Models\WorkerRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class WorkerController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -40,10 +44,12 @@ class WorkerController extends Controller
     public function create()
     {
         $data = [];
-        $worker = Worker::orderBy('created_at','DESC')->first();
+        $worker = Worker::orderBy('id','DESC')->first();
         $departments = Department::get();
+        $records = Record::get();
         $data['workers'] = $worker;
         $data['departments'] = $departments;
+        $data['records'] = $records;
         $positions = Position::get();
         $data['positions'] = $positions;
         return view('admin.workers.create', $data);
@@ -57,6 +63,46 @@ class WorkerController extends Controller
      */
     public function store(StoreworkerRequest $request)
     {
+        // try {
+        //     DB::beginTransaction();
+        //     // insert data table role
+        //     $WorkerCreate = $this->worker->create([
+        //         'code' => $request->code,
+        //         'name' => $request->name,
+        //         'cmnd_no' => $request->cmnd_no,
+        //         'day_range' => $request->day_range,
+        //         'birthday' => $request->birthday,
+        //         'issued_by' => $request->issued_by,
+        //         'address' => $request->address,
+        //         'level' => $request->level,
+        //         'school' => $request->school,
+        //         'certificate' => $request->certificate,
+        //         'sex' => $request->sex,
+        //         'phone' => $request->phone,
+        //         'email' => $request->email,
+        //         'day_work' => $request->day_work,
+        //         'status' => $request->status,
+        //         'skill' => $request->skill,
+        //         'department_id' => $request->department_id,
+        //         'position_id' => $request->position_id,
+        //     ]);
+        //     // insert data table worker_record
+           
+        //     $WorkerCreate->workerRecords()->attach($request->record);
+        //     dd($request->record);
+        //     DB::commit();
+        //     // success
+        //     return redirect()->route('admin.workers.index')->with('success', 'Insert into data to Workers Sucessful.');
+           
+        // } catch (\Exception $ex) {
+        //     DB::rollback();
+        //     return redirect()->back()->with('error', $ex->getMessage());
+        // }
+
+            
+            // dd($request->record);
+
+
         $workerInsert = [
             'code' => $request->code,
             'name' => $request->name,
@@ -77,11 +123,25 @@ class WorkerController extends Controller
             'department_id' => $request->department_id,
             'position_id' => $request->position_id,
         ];
-        DB::beginTransaction();
         // dd($workerInsert);
+        DB::beginTransaction();
+       
         try {
             // insert into table workers
-            Worker::create($workerInsert);
+            
+            $worker = Worker::create($workerInsert);
+
+            // insert into table worker_record
+            if (!empty($request->record)) {
+                foreach ($request->record as $recordId) {
+                    WorkerRecord::create([
+                        'worker_id' => $worker->id,
+                        'record_id' => $recordId,
+                    ]);
+                }
+            }
+            
+
             DB::commit();
             return redirect()->route('admin.workers.index')->with('success', 'Insert into data to Workers Sucessful.');
         } catch (\Exception $ex) {
@@ -119,10 +179,17 @@ class WorkerController extends Controller
         $worker = Worker::findOrFail($id);
         $departments = Department::pluck('name', 'id')->toArray();
         $positions = Position::pluck('name', 'id')->toArray();
+        $records = Record::get();
+        // $workerRecords = WorkerRecord::get();
+        // $records = DB::table('records')->join('worker_record', 'records.id', '=', 'worker_record.record_id')->get();
+
         // dd($departments);
         $data['workers'] = $worker;
         $data['departments'] = $departments;
         $data['positions'] = $positions;
+        $data['records'] = $records;
+        // $data['workerRecords'] = $workerRecords;
+       
         return view('admin.workers.edit', $data);
     }
 

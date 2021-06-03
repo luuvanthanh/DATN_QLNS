@@ -40,4 +40,12 @@ class Worker extends Model
     public function position(){
         return $this->belongsTo(Position::class);
     }
+
+    
+    public function record(){
+        return $this->belongsToMany(Record::class, 'worker_record', 'id' , 'id');
+    }
+
+    
+    
 }
