@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\ExportWorkerController;
 
 
 /*
@@ -31,10 +32,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+
+
 Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'postLogin'])->name('login.handle');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/export', [ExportWorkerController::class, 'index'])->name('export');
 
     // Admin Dashboard
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -92,7 +97,7 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     //     Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
     //     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');
     // });
-
+    
 });
 
 
