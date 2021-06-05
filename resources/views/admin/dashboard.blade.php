@@ -4,8 +4,8 @@
 
     {{-- import file css (private) --}}
     @push('css')
-      <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" /> 
-      <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     @endpush
 
@@ -70,6 +70,21 @@
                         <li class="nav-item">
                             nghỉ việc
                             <span class="float-right badge bg-warning">{{ $countWorkerUnActive }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            {{-- xuất file excel --}}
+            <div class="info-box">
+                <a href="{{ route('admin.export') }}" style="height: 85px; margin-bottom:0px;"
+                    class="info-box-icon  bg-success elevation-1 "><i class="fas fa-file-excel"></i></a>
+                <div class="info-box-content">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="text-dark" href="{{ route('admin.export') }}">Xuất thông tin nhân viên</a>
                         </li>
                     </ul>
                 </div>
@@ -183,7 +198,7 @@
                     on the fly. This flexibility allows for more dynamic charts. --}}
                 </p>
 
-                
+
             </figure>
             <!-- DIRECT CHAT -->
             {{-- <div class="card direct-chat direct-chat-primary">
@@ -662,57 +677,54 @@
     </div>
     {{-- ----------chart---------- --}}
     <script>
-      var categoryData = <?php echo json_encode($categoryData) ?>;
-      var dataChart1 = <?php echo json_encode($dataChart1) ?>;
-      var dataChart2 = <?php echo json_encode($dataChart2) ?>;
-      var dataChart3 = <?php echo json_encode($dataChart3) ?>;
-      Highcharts.chart('container', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'Biểu đồ quản lí nhân sự theo tháng'
-          },
-          subtitle: {
-              text: ''
-          },
-          xAxis: {
-            // cột này là trục x
-              categories: categoryData
-              // categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
-          },
-          yAxis: {
-              min: 0,
-              title: {
-                  text: 'số lượng'
-              }
-          },
-          tooltip: {
-              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.f}</b></td></tr>',
-              footerFormat: '</table>',
-              shared: true,
-              useHTML: true
-          },
-          plotOptions: {
-              column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-              }
-          },
-          series: [{
-              name: 'Chính thức',
-              data: dataChart1,
-          }, {
-              name: 'Nghỉ việc',
-              data: dataChart2,
+        var categoryData = <?php echo json_encode($categoryData); ?>;    var dataChart1 = <?php echo json_encode($dataChart1); ?>;    var dataChart2 = <?php echo json_encode($dataChart2); ?>;    var dataChart3 = <?php echo json_encode($dataChart3); ?>;    Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Biểu đồ quản lí nhân sự theo tháng'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                // cột này là trục x
+                categories: categoryData
+                // categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'số lượng'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Chính thức',
+                data: dataChart1,
+            }, {
+                name: 'Nghỉ việc',
+                data: dataChart2,
 
-          }, {
-              name: 'Thử việc',
-              data: dataChart3,
+            }, {
+                name: 'Thử việc',
+                data: dataChart3,
 
-          }]
-      });
+            }]
+        });
+
     </script>
 @endsection
