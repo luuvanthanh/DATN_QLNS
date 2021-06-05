@@ -10,8 +10,8 @@ class Record extends Model
     use HasFactory;
     protected $table = 'records';
 
-    public function record(){
-        return $this->belongsToMany(Worker::class, 'worker_record', 'id' , 'id');
+    public function worker(){
+        return $this->belongsToMany(Worker::class, 'worker_record', 'worker_id', 'record_id');
     }
     
 }

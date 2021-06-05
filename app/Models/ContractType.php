@@ -9,4 +9,6 @@ class ContractType extends Model
 {
     use HasFactory;
     protected $table = 'contract_types';
+
+    
 }

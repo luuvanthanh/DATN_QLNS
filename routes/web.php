@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ContractController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\WorkerController;
@@ -51,6 +52,16 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
         Route::get('/edit/{id}', [DepartmentController::class, 'edit'])->middleware('checkRole:department-edit')->name('edit');
         Route::put('/update/{id}', [DepartmentController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [DepartmentController::class, 'destroy'])->middleware('checkRole:department-delete')->name('destroy');
+    });
+
+    Route::group(['prefix' => 'contracts', 'as' => 'contracts.'], function () {
+        Route::get('/list', [ContractController::class, 'index'])->name('index');
+        Route::get('/create', [ContractController::class, 'create'])->name('create');
+        Route::post('/store', [ContractController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [ContractController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [ContractController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ContractController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ContractController::class, 'destroy'])->name('destroy');
     });
 
          // Workers

@@ -22,7 +22,7 @@
                 {{--  --}}
             @if(!empty($workers))
             @foreach ($workers as $key => $worker)
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="card card-primary">
                 <div class="card-header border-bottom-0">
                     Nhân sự
@@ -62,52 +62,69 @@
                 </div>
                 </div>
                 </div>
-            @endforeach
-            @endif
+           
             </div>
-            <div class="col-md-6"> 
-              <div class="card card-primary">
-                <div class="card-header border-bottom-0">
-                    Thông tin
+            <div class="col-md-8"> 
+              <div class="card ">
+                <div class="card-header p-2">
+                  <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="active nav-link" href="#info" data-toggle="tab">Thông tin</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contract" data-toggle="tab">Hợp đồng</a></li>
+                   
+                  </ul>
                 </div>
-                <div class="card-body pt-3">
-                <div class="row">
-                  <div class="col-12">
-                    <ul class="ml-4 mb-0 fa-ul text-muted worker-info">
-                      <li>
-                        <span class="fa-li"><i class="fas fa-lg fa-transgender"></i></span>
-                        Giới tính: 
-                        @if ($worker->sex == 0)
-                        <span for="" >Nam</span>
-                        @elseif($worker->sex == 1)
-                        <span for="" >Nữ</span>
-                        @endif
-                      </li>
-                      <li>
-                        <span class="fa-li"><i class="fas fa-lg fa-birthday-cake"></i></span>
-                        Ngày sinh: {{date('d/m/Y', strtotime($worker->birthday))}}
-                      </li>
-                      <li>
-                        <span class="fa-li"><i class="fas fa-md fa-id-card"></i></span>
-                        Số CMND: {{ $worker->cmnd_no}}
-                      </li>
-                      <li>
-                        <span class="fa-li"><i class="fas fa-lg fa-calendar-alt"></i></span>
-                        Ngày cấp: {{ date('d/m/Y', strtotime($worker->day_range))}}
-                      </li>
-                      <li>
-                        <span class="fa-li"><i class="fas fa-lg fa-paper-plane"></i></span>
-                        Nơi cấp: {{ $worker->issued_by}}
-                      </li>
-                      <li>
-                        <span class="fa-li"><i class="fas fa-lg fa-home"></i></span>
-                        Địa chỉ: {{ $worker->address}}
-                      </li>
-                    </ul>
+              <div class="card-body ">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="info">
+                    <div class="row">
+                      <div class="col-12">
+                        <ul class="ml-4 mb-0 fa-ul text-muted worker-info">
+                          <li>
+                            <span class="fa-li"><i class="fas fa-lg fa-transgender"></i></span>
+                            Giới tính: 
+                            @if ($worker->sex == 0)
+                            <span for="" >Nam</span>
+                            @elseif($worker->sex == 1)
+                            <span for="" >Nữ</span>
+                            @endif
+                          </li>
+                          <li>
+                            <span class="fa-li"><i class="fas fa-lg fa-birthday-cake"></i></span>
+                            Ngày sinh: {{date('d/m/Y', strtotime($worker->birthday))}}
+                          </li>
+                          <li>
+                            <span class="fa-li"><i class="fas fa-md fa-id-card"></i></span>
+                            Số CMND: {{ $worker->cmnd_no}}
+                          </li>
+                          <li>
+                            <span class="fa-li"><i class="fas fa-lg fa-calendar-alt"></i></span>
+                            Ngày cấp: {{ date('d/m/Y', strtotime($worker->day_range))}}
+                          </li>
+                          <li>
+                            <span class="fa-li"><i class="fas fa-lg fa-paper-plane"></i></span>
+                            Nơi cấp: {{ $worker->issued_by}}
+                          </li>
+                          <li>
+                            <span class="fa-li"><i class="fas fa-lg fa-home"></i></span>
+                            Địa chỉ: {{ $worker->address}}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
+                  @endif
+                  <div class="tab-pane" id="contract">
+                   
+                    <table class="table table-bordered table-striped data-table">
+                      @include('admin.contracts.index')
+                      {{-- @include('admin.contracts.create')   --}}
+                    </table>
+                  </div>
                 </div>
-                </div>
-                </div>
-                </div>
+                
+              </div>
+              </div>
             </div>
         </div>
       </div>

@@ -135,7 +135,7 @@
                             $recordOld = old('record');
                           }
                         @endphp
-                        <input class="form-check-input" name="record[]" {{ in_array($record->id, $recordOld) ? 'checked' : '' }}   type="checkbox" value="{{$record->id }}" {{ $record->id == $record->record->record_id  ? 'checked' : ''}}  id="flexCheckDefault-{{ $kRecord }}">
+                        <input class="form-check-input" name="record[]" {{ in_array($record->id, $recordOld) ? 'checked' : '' }}   type="checkbox" value="{{$record->id }}" {{ $getAllRecordWorker->contains($record->id) ? 'checked' : ''}}  id="flexCheckDefault-{{ $kRecord }}">
                         <label class="form-check-label" for="flexCheckDefault-{{ $kRecord }}">{{$record->name}}</label>
                       </div>
                       @endforeach

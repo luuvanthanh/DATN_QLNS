@@ -161,6 +161,7 @@ class WorkerController extends Controller
     {
         $data = [];
         $workers = Worker::with('department')->where('id', '=', $id)->get();
+        
         $data['workers'] = $workers;
         return view('admin.workers.detail', $data);
     }
@@ -180,6 +181,7 @@ class WorkerController extends Controller
         $departments = Department::pluck('name', 'id')->toArray();
         $positions = Position::pluck('name', 'id')->toArray();
         $records = Record::get();
+        $getAllRecordWorker = DB::table('worker_record')->where('worker_id', $id)->pluck('record_id');
         // $workerRecords = WorkerRecord::get();
         // $records = DB::table('records')->join('worker_record', 'records.id', '=', 'worker_record.record_id')->get();
 
@@ -188,6 +190,7 @@ class WorkerController extends Controller
         $data['departments'] = $departments;
         $data['positions'] = $positions;
         $data['records'] = $records;
+        $data['getAllRecordWorker'] = $getAllRecordWorker;
         // $data['workerRecords'] = $workerRecords;
        
         return view('admin.workers.edit', $data);
@@ -224,6 +227,10 @@ class WorkerController extends Controller
         DB::beginTransaction();
         try{
             $worker->save();
+            DB::table('worker_record')->where('worker_id', $id)->delete();
+         
+            $worker->record()->attach($request->record);
+            
 
             DB::commit();
             return redirect()->route('admin.workers.index')->with('success','Update workers successful!');

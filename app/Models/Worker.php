@@ -43,7 +43,7 @@ class Worker extends Model
 
     
     public function record(){
-        return $this->belongsToMany(Record::class, 'worker_record', 'id' , 'id');
+        return $this->belongsToMany(Record::class, 'worker_record', 'worker_id', 'record_id');
     }
 
     

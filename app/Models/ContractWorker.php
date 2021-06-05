@@ -10,6 +10,11 @@ class ContractWorker extends Model
     use HasFactory;
     protected $table = 'contract_worker';
 
+    protected $fileable = [
+        'worker_id',
+        'contract_id',
+    ];
+
     public function worker(){
         return $this->belongsTo(worker::class);
     }

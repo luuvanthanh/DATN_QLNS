@@ -12,7 +12,7 @@
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route( 'admin.dashboard') }}">Trang chủ</a></li>
                 <li class="breadcrumb-item "><a href="{{ route('admin.departments.index')}}">Danh sách</a></li>
-                <li class="breadcrumb-item active">Thêm mới</li>
+                <li class="breadcrumb-item active">Cập nhật</li>
               </ol>
             </div>
           </div>
@@ -20,23 +20,21 @@
       <div class="col-md-9">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Thêm mới phòng ban</h3>
+            <h3 class="card-title">Cập nhật phòng ban</h3>
           </div>
           <div class="card-body">
             <div class="form-group">
-                <form action="{{ route('admin.departments.store')}}" method="post">
+                <form action="{{ route('admin.departments.update', $departments->id)}}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="form-group"	>
                         <label for="name" class="required">Tên phòng ban</label>
-                        <input class="form-control" name="name" type="text" value="{{old('name')}}" id="name">
-                        @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                         @enderror
+                        <input class="form-control" name="name" type="text" value="{{$departments->name}}" id="name">
                         <input class="form-control" name="slug" type="hidden" value="">
                     </div>
                     <div class="card-footer">
                         <input class="btn btn-primary" type="submit" value="Lưu">
-                        <a href="{{ route('admin.contracts.index')}}" class="btn btn-secondary">Quay lại</a>
+                        <a href="{{ route('admin.departments.index')}}" class="btn btn-secondary">Quay lại</a>
                       </div>
                 </form>   
             </div>
@@ -49,16 +47,3 @@
 </section>
 {{-- @include('admin.shared._notify') --}}
 @endsection
-
-
-
-<div class="col-md-9">
-  <div class="card card-primary">
-    <div class="card-header">
-      <h3 class="card-title">Thêm mới phòng ban</h3>
-    </div>
-    <div class="card-body">
-      
-    </div>
-  </div>
-</div>
