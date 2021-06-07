@@ -103,7 +103,7 @@
                         
                         <div class="form-group mt-5">
                             <a href="{{ route('admin.role.index') }}" class="btn btn-secondary">Quay lại</a>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Cập nhập</button>
                         </div>
 
                     </div> 

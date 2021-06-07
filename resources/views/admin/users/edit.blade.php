@@ -119,7 +119,7 @@
                         <div class="form-group mb-3">
                             <div class="form-group">
                                 <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">Quay lại</a>
-                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary">Cập nhập</button>
                             </div>
                         </div>
                     </div> 
