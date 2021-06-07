@@ -10,7 +10,7 @@ class ContractWorker extends Model
     use HasFactory;
     protected $table = 'contract_worker';
 
-    protected $fileable = [
+    protected $fillable = [
         'worker_id',
         'contract_id',
     ];

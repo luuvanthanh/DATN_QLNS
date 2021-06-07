@@ -1,6 +1,18 @@
 @extends('layouts.master')
 @section('title', 'list workers')
 
+{{-- js --}}
+@push('js')
+    <script>
+      var _csrf = '{{ csrf_token() }}';
+      var url_contract_store = '{{ route('admin.contracts.store') }}';
+      
+    </script>
+    khai bao file ajax can su dung
+    <script src="/adminlte/dist/js/ajax_contract.js"></script>
+@endpush
+
+
 @section('content')
 <section class="content">
   <div class="row">
@@ -116,9 +128,10 @@
                   @endif
                   <div class="tab-pane" id="contract">
                    
-                    <table class="table table-bordered table-striped data-table">
+                    <table class="table table-bordered table-striped data-table table_reload">
+                      
                       @include('admin.contracts.index')
-                      {{-- @include('admin.contracts.create')   --}}
+                      @include('admin.contracts.edit')
                     </table>
                   </div>
                 </div>

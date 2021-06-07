@@ -10,5 +10,7 @@ class ContractType extends Model
     use HasFactory;
     protected $table = 'contract_types';
 
-    
+    public function contracts(){
+        return $this->hasMany(Contract::class);
+    }
 }

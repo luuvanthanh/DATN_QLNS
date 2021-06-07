@@ -44,9 +44,18 @@
 <script src="/adminlte/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
-<script src="/adminlte/plugins/jquery-ui/jquery-1.12.4.js"></script>
+
 <script src="/adminlte/plugins/jquery-ui/jquery-ui.js"></script>
 <script src="/adminlte/dist/js/myscript.js"></script>
+<script src="/adminlte/plugins/jquery-ui/jquery-1.12.4.js"></script>
+
+{{-- nen viet ajax danh rieng cho tung page
+vd nhu nhan vie n ajax 
+thi tao ra file employee_ajax.js --}}
+{{-- va cu o noi nao can su dung AJAX thi khai bao duong dan nay vao da --}}
+
+
+
 {{-- declare other file script use private --}}
 @stack('js')
 
