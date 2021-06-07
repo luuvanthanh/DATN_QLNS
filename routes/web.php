@@ -61,12 +61,12 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     });
 
     Route::group(['prefix' => 'contracts', 'as' => 'contracts.'], function () {
-        Route::get('/list', [ContractController::class, 'index'])->name('index');
         Route::get('/create', [ContractController::class, 'create'])->name('create');
         Route::post('/store', [ContractController::class, 'store'])->name('store');
         Route::get('/show/{id}', [ContractController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [ContractController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [ContractController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ContractController::class, 'destroy'])->name('destroy');
         Route::delete('/delete/{id}', [ContractController::class, 'destroy'])->name('destroy');
     });
 
@@ -79,7 +79,7 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
         Route::get('/edit/{id}', [WorkerController::class, 'edit'])->middleware('checkRole:worker-edit')->name('edit');
         Route::put('/update/{id}', [WorkerController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [WorkerController::class, 'destroy'])->middleware('checkRole:worker-delete')->name('destroy');
-            
+        
     });
 
     // ------------route-user-----------------

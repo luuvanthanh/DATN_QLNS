@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreworkerRequest;
+use App\Models\Contract;
+use App\Models\ContractType;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Record;
@@ -161,8 +163,11 @@ class WorkerController extends Controller
     {
         $data = [];
         $workers = Worker::with('department')->where('id', '=', $id)->get();
-        
+        $contract_types = ContractType::get();
+        $contracts = Contract::with('contractType')->get();
+        $data['contract_types'] = $contract_types;
         $data['workers'] = $workers;
+        $data['contracts'] = $contracts;
         return view('admin.workers.detail', $data);
     }
 

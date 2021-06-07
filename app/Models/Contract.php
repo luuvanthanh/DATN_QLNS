@@ -11,6 +11,7 @@ class Contract extends Model
     protected $table = 'contracts';
 
     protected $fillable = [
+        'code',
         'start_day',
         'end_day',
         'wage',
@@ -20,5 +21,11 @@ class Contract extends Model
 
     public function contractWorkers(){
         return $this->hasMany(ContractWorker::class);
+    }
+    public function contractType(){
+        return $this->belongsTo(ContractType::class);
+    }
+    public function worker(){
+        return $this->belongsToMany(Record::class, 'contract_worker', 'worker_id', 'contract_id');
     }
 }
