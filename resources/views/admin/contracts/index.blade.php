@@ -209,7 +209,7 @@
               $('#sid' + response.id + ' td:nth-child(4)').text(response.wage);
               $('#sid' + response.id + ' td:nth-child(5)').text(response.status);
               $('#sid' + response.id + ' td:nth-child(6)').text(response.contract_type_id);
-              
+              window.location.reload();
               // $("#modal-edit-contract").modal('toggle');
               // $("#edit_data_contracts")[0].reset();
             },

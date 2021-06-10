@@ -122,12 +122,12 @@ class ContractController extends Controller
             // dung find($id) : get ra 1 record 
             // dung findOrfail($id) : get ra 1 record vaf them tra ve loi 404 neu $id ko ton tai
             $contract = Contract::findOrFail($id);
-            $contract->code = $request->code1;
-            $contract->start_day = $request->effective_date1;
-            $contract->end_day = $request->expiry_date1;
-            $contract->wage = $request->wage1;
-            $contract->status = $request->status1;
-            $contract->contract_type_id = $request->contract_type_id1;
+            $contract->code = $request->code;
+            $contract->start_day = date('Y-m-d', strtotime($request->start_day));
+            $contract->end_day = date('Y-m-d', strtotime($request->end_day));
+            $contract->wage = $request->wage;
+            $contract->status = $request->status;
+            $contract->contract_type_id = $request->contract_type_id;
             $contract->save();
             // DB::table('contract_worker')->where('contract_id', $request->id)->delete();
             // $contract->worker()->attach($request->id_worker);
@@ -140,6 +140,34 @@ class ContractController extends Controller
             ], 500);
         }
     }
+    // public function update(Request $request, $id)
+    // {
+    //     // dd($request->all());
+    //     // 
+    //     // dd( $worker);
+    //     DB::beginTransaction();
+    //     try{
+    //         // dung find($id) : get ra 1 record 
+    //         // dung findOrfail($id) : get ra 1 record vaf them tra ve loi 404 neu $id ko ton tai
+    //         $contract = Contract::findOrFail($id);
+    //         $contract->code = $request->code1;
+    //         $contract->start_day = $request->effective_date1;
+    //         $contract->end_day = $request->expiry_date1;
+    //         $contract->wage = $request->wage1;
+    //         $contract->status = $request->status1;
+    //         $contract->contract_type_id = $request->contract_type_id1;
+    //         $contract->save();
+    //         // DB::table('contract_worker')->where('contract_id', $request->id)->delete();
+    //         // $contract->worker()->attach($request->id_worker);
+    //         DB::commit();
+    //         return response()->json($contract);
+    //     }catch(\Exception $ex){
+    //         DB::rollback();
+    //         return response()->json([
+    //             'message' => $ex->getMessage()
+    //         ], 500);
+    //     }
+    // }
     // public function updateContract(Request $request){
     //     $contract = Contract::find($request->id);
     //     $contract->code = $request->code1;
