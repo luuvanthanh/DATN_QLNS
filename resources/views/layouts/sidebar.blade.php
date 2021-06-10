@@ -87,6 +87,13 @@
                         <p>Quản lý phòng ban</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                  <a href={{ route('admin.project.index') }}
+                      class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }}">
+                      <i class="nav-icon fas fa-tasks"></i>
+                      <p>Quản lý dự án</p>
+                  </a>
+              </li>
                 {{-- -----------Quản trị hệ thống----  --}}
                 {{-- kiểm tra nếu role_id==1 (tức supperadmin) thì hiển thị 2 module này --}}
                 @if(Auth::user()->role_id == 1)

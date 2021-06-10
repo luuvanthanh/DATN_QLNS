@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ExportWorkerController;
 
 
@@ -112,6 +113,15 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     //     Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');
     // });
     
+
+    Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
+        Route::get('/list', [ProjectController::class, 'index'])->name('index');
+        Route::get('/create', [ProjectController::class, 'create'])->name('create');
+        Route::post('/store', [ProjectController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ProjectController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [ProjectController::class, 'destroy'])->name('destroy');
+    });
 });
 
 
