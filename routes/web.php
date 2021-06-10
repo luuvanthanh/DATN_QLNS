@@ -60,14 +60,17 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     });
 
     Route::group(['prefix' => 'contracts', 'as' => 'contracts.'], function () {
+        Route::get('/list', [ContractController::class, 'index'])->name('index');
         Route::get('/create', [ContractController::class, 'create'])->name('create');
         Route::post('/store', [ContractController::class, 'store'])->name('store');
         Route::get('/show/{id}', [ContractController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [ContractController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [ContractController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ContractController::class, 'destroy'])->name('destroy');
-        Route::delete('/delete/{id}', [ContractController::class, 'destroy'])->name('destroy');
+
+        
     });
+    // route::put('/contract',[ContractController::class, 'updateContract'])->name('contract.update');
 
          // Workers
     Route::group(['prefix' => 'workers', 'as' => 'workers.'], function () {

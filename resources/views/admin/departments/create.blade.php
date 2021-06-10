@@ -36,7 +36,7 @@
                     </div>
                     <div class="card-footer">
                         <input class="btn btn-primary" type="submit" value="Lưu">
-                        <a href="{{ route('admin.contracts.index')}}" class="btn btn-secondary">Quay lại</a>
+                        <a href="{{ route('admin.departments.index')}}" class="btn btn-secondary">Quay lại</a>
                       </div>
                 </form>   
             </div>
@@ -52,7 +52,7 @@
 
 
 
-<div class="col-md-9">
+{{-- <div class="col-md-9">
   <div class="card card-primary">
     <div class="card-header">
       <h3 class="card-title">Thêm mới phòng ban</h3>
@@ -61,4 +61,4 @@
       
     </div>
   </div>
-</div>
+</div> --}}
