@@ -165,6 +165,18 @@ class WorkerController extends Controller
         $workers = Worker::with('department')->where('id', '=', $id)->get();
         $contract_types = ContractType::get();
         $contracts = Contract::with('contractType')->get();
+
+        $departments = Department::get();
+        $workerId = Worker::findOrFail($id);
+
+        $getAllWorkerContract = DB::table('contract_worker')->where('worker_id', $id)->pluck('contract_id');
+        $data['getAllWorkerContract'] = $getAllWorkerContract;
+
+        $positions = Position::pluck('name', 'id')->toArray();
+        $data['positions'] = $positions;
+        
+        $data['workerId'] = $workerId;
+        $data['departments'] = $departments;
         $data['contract_types'] = $contract_types;
         $data['workers'] = $workers;
         $data['contracts'] = $contracts;
@@ -229,15 +241,20 @@ class WorkerController extends Controller
         $worker->department_id = $request->department_id;
         $worker->position_id = $request->position_id;
         // dd( $worker);
+        
         DB::beginTransaction();
+        
         try{
+           
             $worker->save();
+            // dd($request->all());
             DB::table('worker_record')->where('worker_id', $id)->delete();
          
             $worker->record()->attach($request->record);
             
-
+            
             DB::commit();
+            
             return redirect()->route('admin.workers.index')->with('success','Update workers successful!');
         }catch(\Exception $ex){
             DB::rollback();

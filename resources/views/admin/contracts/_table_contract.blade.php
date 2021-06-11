@@ -1,69 +1,67 @@
-
-@if ($contracts->isNotEmpty())
-    <div class="dataTables_scroll">
-    <table class="table table-bordered table-striped js-contract-table">
-        <thead>
-        <tr>
-            <th class="text-center">STT</th>
-            <th class="text-center">Mã HĐ</th>
-            <th class="text-center">Loại HĐLĐ</th>
-            <th class="text-center">Mức lương</th>
-            <th class="text-center">Ngày hiệu lực</th>
-            <th class="text-center">Ngày hết hiệu lực</th>
-            {{-- <th class="text-center">Ngày ký</th> --}}
-            <th class="text-center">Trạng thái</th>
-            <th class="text-center" colspan="3">Xử lý</th>
-        </tr>
-        </thead>
-        <tbody>
-        @if(!empty($contracts))
-        @foreach ($contracts as $key => $contract)
-        <tr>
-            <td class="text-center">{{$key+1}}</td>
-            <td class="text-center">{{ $contract->code}}</td>
-            <td class="text-center">{{ !empty($contract->contractType->name) ? $contract->contractType->name : null }}</td>
-            <td class="text-center">{{ $contract->wage}}</td>
-            <td class="text-center">{{ $contract->start_day}}</td>
-            <td class="text-center">{{ $contract->end_day}}</td>
-            {{-- <td></td> --}}
-            <td class="text-center">{{ $contract->status}}</td>
-            <td class="text-center">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-contract-document"
-                data-url=>
-                <i class="fas fa-print"></i>
-            </button>
-            </td>
-            <td class="text-center">
-            {{-- <button type="submit" class="btn btn-success editbtn" data-target="#editModal">Delete</button> --}}
-        
-            <form action="" method="POST" class="frm-contract-edit">
-                <input type="hidden" class="id_wk" value="{{$contract->id}}">
-                <button type="submit" class="btn btn-warning btn-edit" id="js-contract-edit" data-toggle="modal" data-target="#editModal">
-                    <i class="fas fa-pencil-alt"></i>
-                </button>
-            </form>
-            </td>
-            <td>
-            <form action="{{ route('admin.contracts.destroy', $contract->id)}}" method="POST" class="frm-contract-delete">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="btn btn-danger btn-delete" onclick="return confirm('Are you sure DELETE?')">Delete</button>
-            </form>
-            {{-- <a href="" class="btn btn-success deletebtn"><i class="fas fa-trash" data-target="#deleteModal"></i></a> --}}
-            {{-- <button data-url="{{ route('admin.contracts.destroy', $contract->id)}}" type="button" class="btn btn-danger btn-delete">
-                <i class="fas fa-trash"></i>
-            </button> --}}
-            </td>
-        </tr>
-        
-        @endforeach
-        @endif
-        </tbody>
-    </table>
-    </div>
-    @else
-    <div class="">
-    
-    </div>
-    @endif
-
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cap nhat</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <div class="modal-body">
+          {{-- form --}}
+        <form  id="edit_data_contracts">
+            @csrf
+              <div class="row">
+                  <div class="col-sm-6">
+                    @if (!empty($workers ))
+                    @foreach($workers as $worker)
+                    <input type="hidden" name="id_worker" id="id_worker1"  value="{{ $worker->id}}">
+                    @endforeach
+                    @endif
+                    <input type="hidden" name="id" id="id">
+                    <div class="form-group">
+                      <label for="code" class="required">Mã HĐ</label>
+                      <input class="form-control" name="code1" type="text" value="" id="code1">
+                    </div>
+                    <div class="form-group">
+                      <label for="contract_type" class="required">Loại HĐLĐ</label>
+                      <select class="form-control" name="contract_type_id1" id="contract_type_id1"> 
+                        <option value="">--Chọn loại hợp đồng--</option>
+                        @if (!empty($contract_types))
+                        @foreach ($contract_types as $contract_type)
+                        <option value="{{$contract_type->id}}" {{  old('contract_type_id1') == $contract_type->id ? 'selected' : '' }}>{{ $contract_type->name}}</option>
+                        @endforeach  
+                      @endif
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="salary">Mức lương căn bản</label>
+                      <input class="form-control" name="wage1" type="text" value="" id="wage1">
+                    </div>
+                    <div class="form-group">
+                      <label for="status">Trạng thái</label>
+                      <select class="form-control" id="status1" name="status1">
+                        <option value="0" selected="selected">Chưa ký</option>
+                        <option value="1">Đã ký</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="effective_date">Ngày hiệu lực</label>
+                      <input class="form-control reservation" name="effective_date1" type="date" value="" id="effective_date1">
+                    </div>
+                    <div class="form-group">
+                      <label for="expiry_date">Ngày hết hiệu lực</label>
+                      <input class="form-control reservation js-clear" name="expiry_date1" type="date" value="" id="expiry_date1">
+                    </div>
+                    
+                </div>
+              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+              <button type="button" id="insert_contract" class="btn btn-primary">Lưu</button>
+            </div>
+          </form>
+      </div>
+  </div>

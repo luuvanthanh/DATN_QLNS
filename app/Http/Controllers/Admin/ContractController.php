@@ -51,7 +51,6 @@ class ContractController extends Controller
      */
     public function store(Request $request )
     {
-        
         $contractInsert = [
             'code' => $request->code,
             'start_day' => $request->effective_date,
@@ -63,18 +62,14 @@ class ContractController extends Controller
         // dd($contractInsert);
         DB::beginTransaction();
         try {
+
             $contract = Contract::create($contractInsert);
 
              // insert into table worker_record
-            //  if (!empty($request->record)) {
-                // foreach ($request->record as $recordId) {
-                    ContractWorker::create([
-                        'contract_id'   => $contract->id,
-                        'worker_id'     =>$request->id_worker,
-                    ]);
-
-                // }
-            // }
+            ContractWorker::create([
+                'contract_id'   => $contract->id,
+                'worker_id'     =>$request->id_worker,
+            ]);
             DB::commit();
             return redirect()->route('admin.workers.index')->with('success', 'Insert into data to contracts Sucessful.');
         } catch (\Exception $ex) {
@@ -106,10 +101,8 @@ class ContractController extends Controller
      */
     public function edit($id)
     {
-        $data  =[];
-        $contracts = Contract::find($id);
-        $data['contracts'] = $contracts;
-        return view('admin.contracts.edit',$data);
+        $contract = Contract::find($id);
+        return response()->json($contract);
     }
 
     /**
@@ -121,29 +114,71 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contract = Contract::find($id);
-        $contract->code = $request->code;
-        $contract->start_day = $request->effective_date;
-        $contract->end_day = $request->expiry_date;
-        $contract->wage = $request->wage;
-        $contract->status = $request->status;
-        $contract->contract_type_id  = $request->contract_type_id ;
+        // dd($request->all());
+        // 
         // dd( $worker);
         DB::beginTransaction();
         try{
+            // dung find($id) : get ra 1 record 
+            // dung findOrfail($id) : get ra 1 record vaf them tra ve loi 404 neu $id ko ton tai
+            $contract = Contract::findOrFail($id);
+            $contract->code = $request->code;
+            $contract->start_day = date('Y-m-d', strtotime($request->start_day));
+            $contract->end_day = date('Y-m-d', strtotime($request->end_day));
+            $contract->wage = $request->wage;
+            $contract->status = $request->status;
+            $contract->contract_type_id = $request->contract_type_id;
             $contract->save();
-            DB::table('contract_worker')->where('contract_id', $id)->delete();
-         
-            $contract->worker()->attach($request->id_worker);
-            
-
+            // DB::table('contract_worker')->where('contract_id', $request->id)->delete();
+            // $contract->worker()->attach($request->id_worker);
             DB::commit();
-            return redirect()->route('admin.workers.index')->with('success','Update workers successful!');
+            return response()->json($contract);
         }catch(\Exception $ex){
             DB::rollback();
-            return redirect()->back()->with('error',$ex->getMessage());
+            return response()->json([
+                'message' => $ex->getMessage()
+            ], 500);
         }
     }
+    // public function update(Request $request, $id)
+    // {
+    //     // dd($request->all());
+    //     // 
+    //     // dd( $worker);
+    //     DB::beginTransaction();
+    //     try{
+    //         // dung find($id) : get ra 1 record 
+    //         // dung findOrfail($id) : get ra 1 record vaf them tra ve loi 404 neu $id ko ton tai
+    //         $contract = Contract::findOrFail($id);
+    //         $contract->code = $request->code1;
+    //         $contract->start_day = $request->effective_date1;
+    //         $contract->end_day = $request->expiry_date1;
+    //         $contract->wage = $request->wage1;
+    //         $contract->status = $request->status1;
+    //         $contract->contract_type_id = $request->contract_type_id1;
+    //         $contract->save();
+    //         // DB::table('contract_worker')->where('contract_id', $request->id)->delete();
+    //         // $contract->worker()->attach($request->id_worker);
+    //         DB::commit();
+    //         return response()->json($contract);
+    //     }catch(\Exception $ex){
+    //         DB::rollback();
+    //         return response()->json([
+    //             'message' => $ex->getMessage()
+    //         ], 500);
+    //     }
+    // }
+    // public function updateContract(Request $request){
+    //     $contract = Contract::find($request->id);
+    //     $contract->code = $request->code1;
+    //     $contract->start_day = $request->effective_date1;
+    //     $contract->end_day = $request->expiry_date1;
+    //     $contract->wage = $request->wage1;
+    //     $contract->status = $request->status1;
+    //     $contract->contract_type_id = $request->contract_type_id1;
+    //     $contract->save();
+    //     return response()->json($contract);
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -167,13 +202,7 @@ class ContractController extends Controller
             $contract->delete();
             // $contract_worker->delete();
             DB::commit();
-            // return redirect()->route('admin.workers.index')
-            //     ->with('success', 'Delete worker successful!');
-
-            // cho nay nem xu tiep nhu sau
-            // lay data cau worker
-            // sau do generate table contract
-            // tra ve ajax
+            
             $data = [];
             $workers = Worker::with('department')->where('id', '=', $id)->get();
             $contract_types = ContractType::get();

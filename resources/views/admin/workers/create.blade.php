@@ -120,6 +120,9 @@
                                       @endforeach  
                                     @endif
                                   </select>
+                                  @error('department_id')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                                  @enderror
                                   <label for="name" class="required">Chức vụ</label>
                                   <select class="form-control" id="" name="position_id">
                                     <option value="">--Chọn chức vụ--</option>
@@ -129,6 +132,9 @@
                                       @endforeach  
                                     @endif
                                   </select>
+                                  @error('position_id')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                                  @enderror
                               </div>　
                               </div>
                               
