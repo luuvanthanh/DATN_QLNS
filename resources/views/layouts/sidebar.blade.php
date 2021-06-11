@@ -12,10 +12,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <a href="{{ route('admin.profile') }}">
-                  <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid"
-                      style="width: 43px; height: auto; border-radius: 50%;">
-              </a>
+                <a href="{{ route('admin.profile') }}">
+                    <img src="{{ asset(Auth::user()->avatar) }}" alt="" class="img-fluid"
+                        style="width: 43px; height: auto; border-radius: 50%;">
+                </a>
             </div>
             <div class="info mt-2">
                 <a href="{{ route('admin.profile') }}" class="d-block"
@@ -65,38 +65,37 @@
             </a>
           </li>
           <li> --}}
-                <li class="nav-header mt-1">QUẢN LÝ NHÂN SỰ</li>
-                <li class="nav-item">
-                    <a href={{ route('admin.dashboard') }}
-                        class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>Thống kê, báo cáo</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href={{ route('admin.workers.index') }}
-                        class="nav-link {{ Route::currentRouteName() == 'admin.workers.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Quản lý nhân viên</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href={{ route('admin.departments.index') }}
-                        class="nav-link {{ Route::currentRouteName() == 'admin.departments.index' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-building"></i>
-                        <p>Quản lý phòng ban</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                  <a href={{ route('admin.project.index') }}
-                      class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }}">
-                      <i class="nav-icon fas fa-tasks"></i>
-                      <p>Quản lý dự án</p>
-                  </a>
-              </li>
-                {{-- -----------Quản trị hệ thống----  --}}
-                {{-- kiểm tra nếu role_id==1 (tức supperadmin) thì hiển thị 2 module này --}}
-                @if(Auth::user()->role_id == 1)
+                @if (Auth::user()->role_id == 1)
+                    <li class="nav-header mt-1">QUẢN LÝ NHÂN SỰ</li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.dashboard') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-line"></i>
+                            <p>Thống kê, báo cáo</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.workers.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.workers.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Quản lý nhân viên</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.departments.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.departments.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>Quản lý phòng ban</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.project.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Quản lý dự án</p>
+                        </a>
+                    </li>
+
                     <li class="nav-header mt-3">QUẢN TRỊ HỆ THỐNG</li>
                     </li>
                     <li class="nav-item">
@@ -113,7 +112,51 @@
                             <p>Quản lý phân quyền</p>
                         </a>
                     </li>
+
+
+                @elseif(Auth::user()->role_id == 2)
+                    <li class="nav-header mt-1">QUẢN LÝ NHÂN SỰ</li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.dashboard') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-line"></i>
+                            <p>Thống kê, báo cáo</p>
+                        </a>
+                    </li>
+                @elseif(Auth::user()->role_id == 3)
+                    <li class="nav-header mt-1">QUẢN LÝ NHÂN SỰ</li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.dashboard') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-chart-line"></i>
+                            <p>Thống kê, báo cáo</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.workers.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.workers.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Quản lý nhân viên</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.departments.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.departments.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-building"></i>
+                            <p>Quản lý phòng ban</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href={{ route('admin.project.index') }}
+                            class="nav-link {{ Route::currentRouteName() == 'admin.projects.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Quản lý dự án</p>
+                        </a>
+                    </li>
+
+
                 @endif
+                
                 {{-- menu of category module --}}
                 {{-- @php
             $routeCategoryArr = [
@@ -185,7 +228,7 @@
                 @csrf
                 <button type="submit" class="btn btn-danger mt-3" onclick="return confirm('Bạn có đồng ý đăng xuất ?')">Logout</button>
             </form> --}}
-                
+
         </nav>
         <!-- /.sidebar-menu -->
     </div>

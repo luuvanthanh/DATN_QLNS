@@ -45,6 +45,7 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
 
     // Admin Dashboard
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
     Route::post('changePassword', [ProfileController::class, 'changePassword'])->name('changePassword');
@@ -93,12 +94,12 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     });
 
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
-        Route::get('/list', [RoleController::class, 'index'])->name('index');
-        Route::get('/create', [RoleController::class, 'create'])->name('create');
+        Route::get('/list', [RoleController::class, 'index'])->middleware('checkRole:role-list')->name('index');
+        Route::get('/create', [RoleController::class, 'create'])->middleware('checkRole:role-add')->name('create');
         Route::post('/store', [RoleController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
+        Route::get('/edit/{id}', [RoleController::class, 'edit'])->middleware('checkRole:role-edit')->name('edit');
         Route::put('/update/{id}', [RoleController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->name('destroy');
+        Route::delete('/delete/{id}', [RoleController::class, 'destroy'])->middleware('checkRole:role-delete')->name('destroy');
     });
 
     // Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
@@ -112,12 +113,12 @@ Route::group(['middleware' => ['checklogin'] , 'as' => 'admin.'], function () {
     
 
     Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
-        Route::get('/list', [ProjectController::class, 'index'])->name('index');
-        Route::get('/create', [ProjectController::class, 'create'])->name('create');
+        Route::get('/list', [ProjectController::class, 'index'])->middleware('checkRole:project-list')->name('index');
+        Route::get('/create', [ProjectController::class, 'create'])->middleware('checkRole:project-add')->name('create');
         Route::post('/store', [ProjectController::class, 'store'])->name('store');
-        Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('edit');
+        Route::get('/edit/{id}', [ProjectController::class, 'edit'])->middleware('checkRole:project-edit')->name('edit');
         Route::put('/update/{id}', [ProjectController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [ProjectController::class, 'destroy'])->name('destroy');
+        Route::delete('/delete/{id}', [ProjectController::class, 'destroy'])->middleware('checkRole:project-delete')->name('destroy');
     });
 });
 

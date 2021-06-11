@@ -27,13 +27,13 @@ class PermissionSeeder extends Seeder
 
             // permission role
             ['name' => 'role-list',
-             'display_name' => 'Xem vai trò người dùng'],
+             'display_name' => 'Xem vai trò'],
             ['name' => 'role-add',
-             'display_name' => 'Thêm vai trò người dùng'],
+             'display_name' => 'Thêm vai trò'],
             ['name' => 'role-edit',
-             'display_name' => 'Chỉnh sửa vai trò người dùng'],
+             'display_name' => 'Chỉnh sửa vai trò'],
             ['name' => 'role-delete',
-             'display_name' => 'Xóa vai trò người dùng'],
+             'display_name' => 'Xóa vai trò'],
             
             // permissiom department
             ['name' => 'department-list',
@@ -56,6 +56,16 @@ class PermissionSeeder extends Seeder
              'display_name' => 'Chỉnh sửa nhân viên'],
             ['name' => 'worker-delete',
              'display_name' => 'Xóa nhân viên'],
+            
+            // permission worker
+            ['name' => 'project-list',
+             'display_name' => 'Xem danh sách dự án'],
+            ['name' => 'project-add',
+             'display_name' => 'Thêm dự án'],
+            ['name' => 'project-detail',
+             'display_name' => 'Chỉnh sửa dự án'],
+            ['name' => 'project-delete',
+             'display_name' => 'Xóa dự án'],
         ];
         DB::table('permissions')->insert($dataInsert);
     }

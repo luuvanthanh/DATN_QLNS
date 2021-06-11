@@ -22,7 +22,7 @@
         </div>
       </div>
         <div class="card">
-          <h5 class="m-0 text-dark">Danh sách nhân viên</h5>
+          <h5 class="m-0 text-dark">Danh sách dự án</h5>
           <div class="card-header">
             <span class="float-right">
               <a href="{{ route('admin.project.create')}}" class=" btn btn-primary">
